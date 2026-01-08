@@ -17,8 +17,8 @@ composer require oxid-support/logging-framework
 
 ### Dev
 ```bash
-git clone https://github.com/oxid-support/logging-framework.git repo/oxs/request-logger
-composer config repositories.oxid-support/logging-framework path repo/oxs/request-logger
+git clone https://github.com/oxid-support/logging-framework.git repo/oxs/logging-framework
+composer config repositories.oxid-support/logging-framework path repo/oxs/logging-framework
 composer require oxid-support/logging-framework:@dev
 ```
 
