@@ -32,7 +32,7 @@ $aLang = [
 
     // Logging Framework Request Logger
     'OXSREQUESTLOGGER_LF_REQUESTLOGGER_TITLE' => 'Request Logger',
-    'OXSREQUESTLOGGER_LF_REQUESTLOGGER_DESC' => 'Protokolliert Benutzeraktionen und Requests im Shop zur Fehleranalyse.',
+    'OXSREQUESTLOGGER_LF_REQUESTLOGGER_DESC' => 'Konfiguriert die Protokollierung von Shop-Requests zur Fehleranalyse.',
 
     // Logging Framework Request Logger Settings
     'OXSREQUESTLOGGER_LF_SETTINGS_ACTIVATION' => 'Aktivierung',
@@ -95,9 +95,9 @@ $aLang = [
     // ==========================================================================
     // Request Logger Remote Component (simplified - API User setup moved out)
     // ==========================================================================
-    'OXSLOGGINGFRAMEWORK_REMOTE_STATUS_BLOCKED' => 'Gesperrt',
-    'OXSLOGGINGFRAMEWORK_REMOTE_BLOCKED_TITLE' => 'API User erforderlich',
-    'OXSLOGGINGFRAMEWORK_REMOTE_BLOCKED_TEXT' => 'Diese Komponente benötigt einen eingerichteten API User. Bitte richten Sie zuerst den API User ein.',
+    'OXSLOGGINGFRAMEWORK_REMOTE_STATUS_WARNING' => 'Einrichtung erforderlich',
+    'OXSLOGGINGFRAMEWORK_REMOTE_WARNING_TITLE' => 'API User erforderlich',
+    'OXSLOGGINGFRAMEWORK_REMOTE_WARNING_TEXT' => 'Diese Komponente benötigt einen eingerichteten API User. Bitte richten Sie zuerst den API User ein.',
     'OXSLOGGINGFRAMEWORK_REMOTE_GOTO_APIUSER' => 'Zur API User Einrichtung',
     'OXSLOGGINGFRAMEWORK_REMOTE_CONFIG_ACCESS_REQUIRED_TITLE' => 'GraphQL Configuration Access erforderlich',
     'OXSLOGGINGFRAMEWORK_REMOTE_CONFIG_ACCESS_REQUIRED_TEXT' => 'Diese Komponente benötigt das GraphQL Configuration Access Modul. Bitte aktivieren Sie es:',

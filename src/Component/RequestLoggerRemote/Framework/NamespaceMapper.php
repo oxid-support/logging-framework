@@ -16,16 +16,14 @@ final class NamespaceMapper implements NamespaceMapperInterface
     public function getControllerNamespaceMapping(): array
     {
         return [
-            // Only map the GraphQL Controller namespace (not Admin subdirectory)
-            // GraphQL will scan the directory for classes with #[Query] or #[Mutation] attributes
-            'OxidSupport\\RequestLogger\\Component\\Remote\\Controller\\GraphQL' => __DIR__ . '/../Controller/GraphQL/',
+            'OxidSupport\\LoggingFramework\\Component\\RequestLoggerRemote\\Controller\\GraphQL' => __DIR__ . '/../Controller/GraphQL/',
         ];
     }
 
     public function getTypeNamespaceMapping(): array
     {
         return [
-            'OxidSupport\\RequestLogger\\Component\\Remote\\DataType' => __DIR__ . '/../DataType/',
+            'OxidSupport\\LoggingFramework\\Component\\RequestLoggerRemote\\DataType' => __DIR__ . '/../DataType/',
         ];
     }
 }

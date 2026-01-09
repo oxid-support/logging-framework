@@ -9,75 +9,43 @@ declare(strict_types=1);
 
 namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service;
 
-use Exception;
-use OxidEsales\EshopCommunity\Internal\Framework\Module\Setup\Bridge\ModuleActivationBridgeInterface;
-use OxidEsales\EshopCommunity\Internal\Transition\Utility\ContextInterface;
-use OxidEsales\GraphQL\ConfigurationAccess\Module\Service\ModuleActivationServiceInterface as ConfigAccessActivationService;
+use OxidEsales\GraphQL\ConfigurationAccess\Module\Service\ModuleSettingServiceInterface as ConfigAccessSettingService;
 use OxidSupport\LoggingFramework\Module\Module as RequestLoggerModule;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Exception\ModuleActivationException;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Exception\ModuleDeactivationException;
 
 /**
- * Service for managing Request Logger module activation state.
+ * Service for managing Request Logger component activation state.
  *
- * This service wraps the official OXID configuration-access module's ModuleActivationService
- * for activate/deactivate operations, while providing an additional isActive() check
- * that is not available in the configuration-access module.
+ * This service controls the requestlogger_active setting which determines
+ * whether the Request Logger component is actively logging requests.
  */
 final readonly class ActivationService implements ActivationServiceInterface
 {
+    private const SETTING_ACTIVE = RequestLoggerModule::SETTING_REQUESTLOGGER_ACTIVE;
+
     public function __construct(
-        private ContextInterface $context,
-        private ModuleActivationBridgeInterface $moduleActivationBridge,
-        private ConfigAccessActivationService $configAccessActivationService
+        private ConfigAccessSettingService $moduleSettingService
     ) {
     }
 
     public function activate(): bool
     {
-        try {
-            return $this->configAccessActivationService->activateModule(RequestLoggerModule::ID);
-        } catch (Exception $exception) {
-            // Security: Don't expose internal error details to API consumers
-            error_log('Module activation failed: ' . $exception->getMessage());
-
-            throw new ModuleActivationException(
-                'Failed to activate module',
-                0,
-                $exception
-            );
-        }
+        return $this->moduleSettingService
+            ->changeBooleanSetting(self::SETTING_ACTIVE, true, RequestLoggerModule::ID)
+            ->getValue();
     }
 
     public function deactivate(): bool
     {
-        try {
-            return $this->configAccessActivationService->deactivateModule(RequestLoggerModule::ID);
-        } catch (Exception $exception) {
-            // Security: Don't expose internal error details to API consumers
-            error_log('Module deactivation failed: ' . $exception->getMessage());
+        $this->moduleSettingService
+            ->changeBooleanSetting(self::SETTING_ACTIVE, false, RequestLoggerModule::ID);
 
-            throw new ModuleDeactivationException(
-                'Failed to deactivate module',
-                0,
-                $exception
-            );
-        }
+        return true;
     }
 
-    /**
-     * Check if the Request Logger module is currently active.
-     * Note: This method uses the OXID bridge directly as configuration-access
-     * does not provide an isActive check.
-     */
     public function isActive(): bool
     {
-        $shopId = $this->context->getCurrentShopId();
-
-        try {
-            return $this->moduleActivationBridge->isActive(RequestLoggerModule::ID, $shopId);
-        } catch (Exception) {
-            return false;
-        }
+        return $this->moduleSettingService
+            ->getBooleanSetting(self::SETTING_ACTIVE, RequestLoggerModule::ID)
+            ->getValue();
     }
 }

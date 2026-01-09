@@ -53,7 +53,7 @@ class NavigationController extends NavigationController_parent
                 self::SETTING_REQUESTLOGGER_ACTIVE,
                 Module::ID
             ),
-            'loggingframework_remote_setup' => $moduleSettingService->getBoolean(
+            'loggingframework_remote_setup' => $this->isApiUserSetupComplete() && $moduleSettingService->getBoolean(
                 self::SETTING_REMOTE_ACTIVE,
                 Module::ID
             ),
