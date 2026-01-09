@@ -59,7 +59,7 @@ $aLang = [
     // ==========================================================================
     'OXSLOGGINGFRAMEWORK_APIUSER_TITLE' => 'API User',
     'OXSLOGGINGFRAMEWORK_APIUSER_DESC' => 'Manages the API user for remote access to the Logging Framework.',
-    'OXSLOGGINGFRAMEWORK_APIUSER_STATUS_READY' => 'Ready',
+    'OXSLOGGINGFRAMEWORK_APIUSER_STATUS_READY' => 'Active',
     'OXSLOGGINGFRAMEWORK_APIUSER_STATUS_SETUP_REQUIRED' => 'Setup Required',
     'OXSLOGGINGFRAMEWORK_APIUSER_INFO_TITLE' => 'Important',
     'OXSLOGGINGFRAMEWORK_APIUSER_INFO_TEXT' => 'The API User is required for all components that need remote access (e.g., Request Logger Remote). Set this up first.',
