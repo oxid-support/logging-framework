@@ -16,7 +16,7 @@
     "OXSREQUESTLOGGER_LF_REMOTE_DESC"
 ) }}
 
-{{ lf.toggle_section("loggingframework_remote_setup", isActive, not canToggle, "loggingframework_remote_setup") }}
+{{ lf.toggle_section("loggingframework_remote_setup", isActive, not canToggle, oViewConf.getSelfLink(), oViewConf.getHiddenSid()) }}
 
 {% if not apiUserSetupComplete %}
     <div class="warning-notice">

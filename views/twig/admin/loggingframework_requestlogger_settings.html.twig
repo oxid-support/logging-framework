@@ -14,7 +14,7 @@
     "OXSREQUESTLOGGER_LF_REQUESTLOGGER_DESC"
 ) }}
 
-{{ lf.toggle_section("loggingframework_requestlogger_settings", isActive, false, "loggingframework_requestlogger_settings") }}
+{{ lf.toggle_section("loggingframework_requestlogger_settings", isActive, false, oViewConf.getSelfLink(), oViewConf.getHiddenSid()) }}
 
 <div>
     <form method="post" action="{{ oViewConf.getSelfLink()|raw }}" id="settingsForm">

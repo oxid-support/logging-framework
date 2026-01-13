@@ -29,51 +29,29 @@
  # @param controller    Controller class name for form action
  # @param isActive      Whether the toggle is currently on
  # @param isDisabled    Whether the toggle should be disabled
- # @param localStorageKey Key for storing nav expansion state (optional)
+ # @param actionUrl     Form action URL (from oViewConf.getSelfLink())
+ # @param hiddenSid     Hidden SID fields (from oViewConf.getHiddenSid())
  #}
-{% macro toggle_section(controller, isActive, isDisabled, localStorageKey) %}
-<form method="post" action="{{ oViewConf.getSelfLink()|raw }}" id="toggleForm" target="_self">
-    {{ oViewConf.getHiddenSid()|raw }}
+{% macro toggle_section(controller, isActive, isDisabled, actionUrl, hiddenSid) %}
+<form method="post" action="{{ actionUrl|raw }}" id="toggleForm">
+    {{ hiddenSid|raw }}
     <input type="hidden" name="cl" value="{{ controller }}">
     <input type="hidden" name="fnc" value="toggleComponent">
-    <input type="hidden" name="reloadFrame" value="1">
-</form>
+    <input type="hidden" name="reloadnav" value="1">
 
-<div class="toggle-section {{ isDisabled ? 'disabled' : '' }}">
-    <div>
-        <h3>{{ translate({ ident: "OXSREQUESTLOGGER_LF_COMPONENT_ACTIVATION" }) }}</h3>
+    <div class="toggle-section {{ isDisabled ? 'disabled' : '' }}">
+        <div>
+            <h3>{{ translate({ ident: "OXSREQUESTLOGGER_LF_COMPONENT_ACTIVATION" }) }}</h3>
+        </div>
+        <label class="toggle-switch">
+            <input type="checkbox"
+                   {{ isActive and not isDisabled ? 'checked' : '' }}
+                   {{ isDisabled ? 'disabled' : '' }}
+                   onchange="this.form.submit();">
+            <span class="toggle-slider {{ isDisabled ? 'disabled' : '' }}"></span>
+        </label>
     </div>
-    <label class="toggle-switch">
-        <input type="checkbox"
-               {{ isActive and not isDisabled ? 'checked' : '' }}
-               {{ isDisabled ? 'disabled' : '' }}
-               onchange="submitToggleAndReload();">
-        <span class="toggle-slider {{ isDisabled ? 'disabled' : '' }}"></span>
-    </label>
-</div>
-
-<script>
-function submitToggleAndReload() {
-    {% if isDisabled %}
-    return false;
-    {% endif %}
-    var form = document.getElementById('toggleForm');
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', form.action, true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            if (top.localStorage) {
-                top.localStorage.setItem('oxs_lf_expand_nav', '{{ localStorageKey ?: controller }}');
-            }
-            top.location.reload();
-        }
-    };
-    var formData = new FormData(form);
-    var params = new URLSearchParams(formData).toString();
-    xhr.send(params);
-}
-</script>
+</form>
 {% endmacro %}
 
 {#
