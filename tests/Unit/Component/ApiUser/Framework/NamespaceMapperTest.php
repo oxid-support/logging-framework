@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\ApiUser\Framework;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\ApiUser\Framework;
 
 use OxidEsales\GraphQL\Base\Framework\NamespaceMapperInterface;
-use OxidSupport\LoggingFramework\Component\ApiUser\Framework\NamespaceMapper;
+use OxidSupport\Heartbeat\Component\ApiUser\Framework\NamespaceMapper;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -38,7 +38,7 @@ final class NamespaceMapperTest extends TestCase
         $mapping = $mapper->getControllerNamespaceMapping();
 
         $this->assertArrayHasKey(
-            'OxidSupport\\LoggingFramework\\Component\\ApiUser\\Controller\\GraphQL',
+            'OxidSupport\\Heartbeat\\Component\\ApiUser\\Controller\\GraphQL',
             $mapping
         );
     }
@@ -48,7 +48,7 @@ final class NamespaceMapperTest extends TestCase
         $mapper = new NamespaceMapper();
         $mapping = $mapper->getControllerNamespaceMapping();
 
-        $path = $mapping['OxidSupport\\LoggingFramework\\Component\\ApiUser\\Controller\\GraphQL'];
+        $path = $mapping['OxidSupport\\Heartbeat\\Component\\ApiUser\\Controller\\GraphQL'];
 
         $this->assertDirectoryExists($path);
     }

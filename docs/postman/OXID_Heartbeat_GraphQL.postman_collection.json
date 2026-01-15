@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "oxs-logging-framework-graphql",
-		"name": "OXID Logging Framework - GraphQL API",
-		"description": "GraphQL API Endpoints für das OXID Logging Framework Modul.\n\n## Authentifizierung\n\nDie meisten Endpunkte erfordern eine JWT-Authentifizierung. Verwenden Sie zuerst die OXID GraphQL Base `token`-Query, um ein Token zu erhalten.\n\n## Komponenten\n\n- **ApiUser**: API-Benutzer Setup und Passwort-Verwaltung\n- **RequestLoggerRemote**: Remote-Steuerung des Request Loggers\n- **LogSender**: Abruf von Log-Dateien vom Shop",
+		"_postman_id": "oxs-heartbeat-graphql",
+		"name": "OXID Heartbeat - GraphQL API",
+		"description": "GraphQL API Endpoints für das OXID Heartbeat Modul.\n\n## Authentifizierung\n\nDie meisten Endpunkte erfordern eine JWT-Authentifizierung. Verwenden Sie zuerst die OXID GraphQL Base `token`-Query, um ein Token zu erhalten.\n\n## Komponenten\n\n- **ApiUser**: API-Benutzer Setup und Passwort-Verwaltung\n- **RequestLoggerRemote**: Remote-Steuerung des Request Loggers\n- **LogSender**: Abruf von Log-Dateien vom Shop",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"variable": [
@@ -20,9 +20,9 @@
 		},
 		{
 			"key": "apiUsername",
-			"value": "loggingframework-api@oxid-esales.com",
+			"value": "heartbeat-api@oxid-esales.com",
 			"type": "string",
-			"description": "API-Benutzer E-Mail (Standard: loggingframework-api@oxid-esales.com)"
+			"description": "API-Benutzer E-Mail (Standard: heartbeat-api@oxid-esales.com)"
 		},
 		{
 			"key": "apiPassword",
@@ -99,7 +99,7 @@
 								"{{baseUrl}}"
 							]
 						},
-						"description": "Authentifizierung mit dem Logging Framework API-Benutzer. Das Token wird automatisch in der Collection-Variable gespeichert."
+						"description": "Authentifizierung mit dem Heartbeat API-Benutzer. Das Token wird automatisch in der Collection-Variable gespeichert."
 					},
 					"response": []
 				}
@@ -107,7 +107,7 @@
 		},
 		{
 			"name": "ApiUser - Password Management",
-			"description": "API-Benutzer Passwort-Verwaltung\n\n**Hinweis:** `loggingFrameworkSetPassword` erfordert KEINE Authentifizierung, aber einen gültigen Setup-Token.",
+			"description": "API-Benutzer Passwort-Verwaltung\n\n**Hinweis:** `heartbeatSetPassword` erfordert KEINE Authentifizierung, aber einen gültigen Setup-Token.",
 			"item": [
 				{
 					"name": "Set Password (Token-Auth)",
@@ -117,7 +117,7 @@
 							"script": {
 								"exec": [
 									"var jsonData = pm.response.json();",
-									"if (jsonData.data && jsonData.data.loggingFrameworkSetPassword === true) {",
+									"if (jsonData.data && jsonData.data.heartbeatSetPassword === true) {",
 									"    // Password was set successfully, copy newPassword to apiPassword",
 									"    var newPwd = pm.collectionVariables.get('newPassword');",
 									"    pm.collectionVariables.set('apiPassword', newPwd);",
@@ -144,7 +144,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation SetPassword($token: String!, $password: String!) {\n    loggingFrameworkSetPassword(token: $token, password: $password)\n}",
+								"query": "mutation SetPassword($token: String!, $password: String!) {\n    heartbeatSetPassword(token: $token, password: $password)\n}",
 								"variables": "{\n    \"token\": \"{{setupToken}}\",\n    \"password\": \"{{newPassword}}\"\n}"
 							}
 						},
@@ -154,7 +154,7 @@
 								"{{baseUrl}}"
 							]
 						},
-						"description": "Setzt das Passwort für den Logging Framework API-Benutzer.\n\n**Voraussetzungen:**\n- Modul muss aktiviert sein\n- Setup-Token muss existieren (wird im Admin generiert)\n\n**Hinweis:** Der Token wird nach erfolgreicher Verwendung invalidiert. Das neue Passwort wird automatisch in `apiPassword` gespeichert."
+						"description": "Setzt das Passwort für den Heartbeat API-Benutzer.\n\n**Voraussetzungen:**\n- Modul muss aktiviert sein\n- Setup-Token muss existieren (wird im Admin generiert)\n\n**Hinweis:** Der Token wird nach erfolgreicher Verwendung invalidiert. Das neue Passwort wird automatisch in `apiPassword` gespeichert."
 					},
 					"response": []
 				},
@@ -171,7 +171,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation ResetPassword {\n    loggingFrameworkResetPassword\n}",
+								"query": "mutation ResetPassword {\n    heartbeatResetPassword\n}",
 								"variables": ""
 							}
 						},
@@ -181,7 +181,7 @@
 								"{{baseUrl}}"
 							]
 						},
-						"description": "Setzt das Passwort des API-Benutzers zurück und generiert einen neuen Setup-Token.\n\n**Erfordert:** `OXSLOGGINGFRAMEWORK_PASSWORD_RESET` Berechtigung (Admin oder API-Benutzergruppe)"
+						"description": "Setzt das Passwort des API-Benutzers zurück und generiert einen neuen Setup-Token.\n\n**Erfordert:** `OXSHEARTBEAT_PASSWORD_RESET` Berechtigung (Admin oder API-Benutzergruppe)"
 					},
 					"response": []
 				}

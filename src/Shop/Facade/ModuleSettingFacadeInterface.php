@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Shop\Facade;
+namespace OxidSupport\Heartbeat\Shop\Facade;
 
 interface ModuleSettingFacadeInterface
 {

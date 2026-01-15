@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Exception;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Exception;
 
 use Exception;
 use GraphQL\Error\ClientAware;

@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Exception\RemoteComponentDisabledException;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Exception\RemoteComponentDisabledException;
 
 final readonly class RemoteComponentStatusService implements RemoteComponentStatusServiceInterface
 {

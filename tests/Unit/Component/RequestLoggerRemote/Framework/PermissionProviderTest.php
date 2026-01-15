@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Framework;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Framework;
 
 use OxidEsales\GraphQL\Base\Framework\PermissionProviderInterface;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Framework\PermissionProvider;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Framework\PermissionProvider;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -37,7 +37,7 @@ final class PermissionProviderTest extends TestCase
         $provider = new PermissionProvider();
         $permissions = $provider->getPermissions();
 
-        $this->assertArrayHasKey('oxsloggingframework_api', $permissions);
+        $this->assertArrayHasKey('oxsheartbeat_api', $permissions);
     }
 
     public function testGetPermissionsContainsAdminGroup(): void
@@ -53,7 +53,7 @@ final class PermissionProviderTest extends TestCase
         $provider = new PermissionProvider();
         $permissions = $provider->getPermissions();
 
-        $this->assertContains('REQUEST_LOGGER_VIEW', $permissions['oxsloggingframework_api']);
+        $this->assertContains('REQUEST_LOGGER_VIEW', $permissions['oxsheartbeat_api']);
     }
 
     public function testApiUserGroupHasChangePermission(): void
@@ -61,7 +61,7 @@ final class PermissionProviderTest extends TestCase
         $provider = new PermissionProvider();
         $permissions = $provider->getPermissions();
 
-        $this->assertContains('REQUEST_LOGGER_CHANGE', $permissions['oxsloggingframework_api']);
+        $this->assertContains('REQUEST_LOGGER_CHANGE', $permissions['oxsheartbeat_api']);
     }
 
     public function testApiUserGroupHasActivatePermission(): void
@@ -69,7 +69,7 @@ final class PermissionProviderTest extends TestCase
         $provider = new PermissionProvider();
         $permissions = $provider->getPermissions();
 
-        $this->assertContains('REQUEST_LOGGER_ACTIVATE', $permissions['oxsloggingframework_api']);
+        $this->assertContains('REQUEST_LOGGER_ACTIVATE', $permissions['oxsheartbeat_api']);
     }
 
     public function testAdminGroupHasViewPermission(): void
@@ -101,7 +101,7 @@ final class PermissionProviderTest extends TestCase
         $provider = new PermissionProvider();
         $permissions = $provider->getPermissions();
 
-        $this->assertCount(3, $permissions['oxsloggingframework_api']);
+        $this->assertCount(3, $permissions['oxsheartbeat_api']);
     }
 
     public function testAdminGroupHasExactlyThreePermissions(): void
@@ -117,7 +117,7 @@ final class PermissionProviderTest extends TestCase
         $provider = new PermissionProvider();
         $permissions = $provider->getPermissions();
 
-        $apiPermissions = $permissions['oxsloggingframework_api'];
+        $apiPermissions = $permissions['oxsheartbeat_api'];
         $adminPermissions = $permissions['oxidadmin'];
 
         sort($apiPermissions);

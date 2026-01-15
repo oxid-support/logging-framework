@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Shared\Controller\Admin;
+namespace OxidSupport\Heartbeat\Shared\Controller\Admin;
 
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
@@ -16,7 +16,7 @@ use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServ
 use OxidEsales\EshopCommunity\Internal\Transition\Utility\ContextInterface;
 
 /**
- * Abstract base controller for Logging Framework component pages.
+ * Abstract base controller for Heartbeat component pages.
  *
  * Provides common functionality:
  * - Module setting access
@@ -49,8 +49,8 @@ abstract class AbstractComponentController extends AdminController implements Co
     public function getStatusTextKey(): string
     {
         return $this->isComponentActive()
-            ? 'OXSREQUESTLOGGER_LF_STATUS_ACTIVE'
-            : 'OXSREQUESTLOGGER_LF_STATUS_INACTIVE';
+            ? 'OXSHEARTBEAT_LF_STATUS_ACTIVE'
+            : 'OXSHEARTBEAT_LF_STATUS_INACTIVE';
     }
 
     /**

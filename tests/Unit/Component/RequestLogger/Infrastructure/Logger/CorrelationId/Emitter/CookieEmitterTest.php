@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter;
 
 /**
  * NAMESPACE FUNCTION OVERRIDE TECHNIQUE
@@ -18,7 +18,7 @@ namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infras
  * 2. Global namespace if not found in current namespace
  *
  * By defining setcookie() in the SAME namespace as the production code
- * (OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter), when CookieEmitter
+ * (OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter), when CookieEmitter
  * calls setcookie(), PHP finds our override function instead of the global one.
  *
  * STRUCTURE:
@@ -61,7 +61,7 @@ namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infras
  */
 
 // Override global function for the Emitter namespace to capture calls
-namespace OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter;
+namespace OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter;
 
 /** @var array<array> Stores cookies set during tests */
 $GLOBALS['test_cookies'] = [];
@@ -86,7 +86,7 @@ function setcookie(string $name, string $value = "", $options = 0): bool
 }
 
 // Back to test namespace
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter;
 
 class CookieEmitterTest extends \PHPUnit\Framework\TestCase
 {
@@ -98,14 +98,14 @@ class CookieEmitterTest extends \PHPUnit\Framework\TestCase
 
     public function testImplementsInterface(): void
     {
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 2592000);
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 2592000);
 
-        $this->assertInstanceOf(\OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\EmitterInterface::class, $emitter);
+        $this->assertInstanceOf(\OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\EmitterInterface::class, $emitter);
     }
 
     public function testEmitSetsCookie(): void
     {
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 3600);
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 3600);
         $id = 'test-cookie-id-123';
 
         $emitter->emit($id);
@@ -118,7 +118,7 @@ class CookieEmitterTest extends \PHPUnit\Framework\TestCase
 
     public function testEmitSetsHttpOnlyFlag(): void
     {
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 3600);
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 3600);
 
         $emitter->emit('test-id');
 
@@ -128,7 +128,7 @@ class CookieEmitterTest extends \PHPUnit\Framework\TestCase
 
     public function testEmitSetsSameSiteLax(): void
     {
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 3600);
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 3600);
 
         $emitter->emit('test-id');
 
@@ -138,7 +138,7 @@ class CookieEmitterTest extends \PHPUnit\Framework\TestCase
 
     public function testEmitSetsPathToRoot(): void
     {
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 3600);
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 3600);
 
         $emitter->emit('test-id');
 
@@ -148,7 +148,7 @@ class CookieEmitterTest extends \PHPUnit\Framework\TestCase
 
     public function testEmitWithCustomCookieName(): void
     {
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('my_custom_cookie', 7200);
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('my_custom_cookie', 7200);
 
         $emitter->emit('custom-id-456');
 
@@ -161,7 +161,7 @@ class CookieEmitterTest extends \PHPUnit\Framework\TestCase
     {
         $_SERVER['HTTPS'] = 'on';
 
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 3600);
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 3600);
 
         $emitter->emit('test-id');
 
@@ -175,7 +175,7 @@ class CookieEmitterTest extends \PHPUnit\Framework\TestCase
     {
         unset($_SERVER['HTTPS']);
 
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 3600);
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter('correlation_id', 3600);
 
         $emitter->emit('test-id');
 

@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\LogSender\DataType;
+namespace OxidSupport\Heartbeat\Component\LogSender\DataType;
 
 /**
  * Value object representing a log path configuration.

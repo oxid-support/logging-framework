@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\LogSender\Framework;
+namespace OxidSupport\Heartbeat\Component\LogSender\Framework;
 
 use OxidEsales\GraphQL\Base\Framework\NamespaceMapperInterface;
 
@@ -16,14 +16,14 @@ final class NamespaceMapper implements NamespaceMapperInterface
     public function getControllerNamespaceMapping(): array
     {
         return [
-            'OxidSupport\\LoggingFramework\\Component\\LogSender\\Controller\\GraphQL' => __DIR__ . '/../Controller/GraphQL/',
+            'OxidSupport\\Heartbeat\\Component\\LogSender\\Controller\\GraphQL' => __DIR__ . '/../Controller/GraphQL/',
         ];
     }
 
     public function getTypeNamespaceMapping(): array
     {
         return [
-            'OxidSupport\\LoggingFramework\\Component\\LogSender\\DataType' => __DIR__ . '/../DataType/',
+            'OxidSupport\\Heartbeat\\Component\\LogSender\\DataType' => __DIR__ . '/../DataType/',
         ];
     }
 }

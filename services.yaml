@@ -1,7 +1,7 @@
 parameters:
-    oxs.request_logger.cookie_name: 'X-Correlation-Id'
-    oxs.request_logger.header_name: 'X-Correlation-Id'
-    oxs.request_logger.ttl: 2592000 # 30 days in seconds
+    oxs.heartbeat.cookie_name: 'X-Correlation-Id'
+    oxs.heartbeat.header_name: 'X-Correlation-Id'
+    oxs.heartbeat.ttl: 2592000 # 30 days in seconds
 
 services:
 
@@ -13,111 +13,111 @@ services:
     # Component: RequestLogger - Infrastructure/Logger
     # ==========================================================================
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Security\SensitiveDataRedactorInterface:
-        class: OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Security\SensitiveDataRedactor
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Security\SensitiveDataRedactorInterface:
+        class: OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Security\SensitiveDataRedactor
         public: true
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\LoggerFactory: ~
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\LoggerFactory: ~
 
-    oxs.logger.channel:
+    oxs.heartbeat.logger.channel:
         class: Monolog\Logger
-        factory: ['@OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\LoggerFactory', 'create']
+        factory: ['@OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\LoggerFactory', 'create']
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder\ShopRequestRecorder:
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder\ShopRequestRecorder:
         arguments:
-            $logger: '@oxs.logger.channel'
+            $logger: '@oxs.heartbeat.logger.channel'
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder\ShopRequestRecorderInterface:
-        alias: OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder\ShopRequestRecorder
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder\ShopRequestRecorderInterface:
+        alias: OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder\ShopRequestRecorder
         public: true
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProviderInterface:
-        class: OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProvider
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProviderInterface:
+        class: OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProvider
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdGeneratorInterface:
-        class: OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdGenerator
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdGeneratorInterface:
+        class: OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdGenerator
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessorInterface:
-        class: OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessor
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessorInterface:
+        class: OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessor
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\Decorator\OnceEmitterDecorator: ~
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\Decorator\OnceEmitterDecorator: ~
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\EmitterInterface:
-        alias: OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\Decorator\OnceEmitterDecorator
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\EmitterInterface:
+        alias: OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\Decorator\OnceEmitterDecorator
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter:
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\CookieEmitter:
         arguments:
-            $cookieName: '%oxs.request_logger.cookie_name%'
-            $ttl: '%oxs.request_logger.ttl%'
-        tags: ['oxs.cid.emitter']
+            $cookieName: '%oxs.heartbeat.cookie_name%'
+            $ttl: '%oxs.heartbeat.ttl%'
+        tags: ['oxs.heartbeat.cid.emitter']
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter:
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter:
         arguments:
-            $headerName: '%oxs.request_logger.header_name%'
-        tags: ['oxs.cid.emitter']
+            $headerName: '%oxs.heartbeat.header_name%'
+        tags: ['oxs.heartbeat.cid.emitter']
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\Composite\CompositeEmitter:
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\Composite\CompositeEmitter:
         arguments:
-            $emitters: !tagged_iterator 'oxs.cid.emitter'
+            $emitters: !tagged_iterator 'oxs.heartbeat.cid.emitter'
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\ResolverInterface:
-        alias: OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\Composite\CompositeResolver
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\ResolverInterface:
+        alias: OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\Composite\CompositeResolver
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\CookieResolver:
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\CookieResolver:
         arguments:
-            $cookieName: '%oxs.request_logger.cookie_name%'
+            $cookieName: '%oxs.heartbeat.cookie_name%'
         tags:
-            - { name: 'oxs.cid.resolver', priority: 100 }
+            - { name: 'oxs.heartbeat.cid.resolver', priority: 100 }
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\HeaderResolver:
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\HeaderResolver:
         arguments:
-            $headerName: '%oxs.request_logger.header_name%'
+            $headerName: '%oxs.heartbeat.header_name%'
         tags:
-            - { name: 'oxs.cid.resolver', priority: 190 }
+            - { name: 'oxs.heartbeat.cid.resolver', priority: 190 }
 
-    OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\Composite\CompositeResolver:
+    OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\Composite\CompositeResolver:
         arguments:
-            $resolvers: !tagged_iterator 'oxs.cid.resolver'
+            $resolvers: !tagged_iterator 'oxs.heartbeat.cid.resolver'
 
     # Component: RequestLogger - Controller/Admin
-    OxidSupport\LoggingFramework\Component\RequestLogger\Controller\Admin\SettingsController:
+    OxidSupport\Heartbeat\Component\RequestLogger\Controller\Admin\SettingsController:
         public: true
         autowire: false
         tags:
-            - { name: 'oxid.view_controller', controller_key: 'loggingframework_requestlogger_settings' }
+            - { name: 'oxid.view_controller', controller_key: 'heartbeat_requestlogger_settings' }
 
     # ==========================================================================
     # Component: ApiUser - Services
     # ==========================================================================
 
-    OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserStatusServiceInterface:
-        class: OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserStatusService
+    OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserStatusServiceInterface:
+        class: OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserStatusService
         public: true
 
-    OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserServiceInterface:
-        class: OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserService
+    OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserServiceInterface:
+        class: OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserService
         public: true
 
-    OxidSupport\LoggingFramework\Component\ApiUser\Service\TokenGeneratorInterface:
-        class: OxidSupport\LoggingFramework\Component\ApiUser\Service\TokenGenerator
+    OxidSupport\Heartbeat\Component\ApiUser\Service\TokenGeneratorInterface:
+        class: OxidSupport\Heartbeat\Component\ApiUser\Service\TokenGenerator
         public: true
 
     # Component: ApiUser - Controller/Admin
-    OxidSupport\LoggingFramework\Component\ApiUser\Controller\Admin\SetupController:
+    OxidSupport\Heartbeat\Component\ApiUser\Controller\Admin\SetupController:
         public: true
         autowire: false
         tags:
-            - { name: 'oxid.view_controller', controller_key: 'loggingframework_apiuser_setup' }
+            - { name: 'oxid.view_controller', controller_key: 'heartbeat_apiuser_setup' }
 
     # Component: ApiUser - Controller/GraphQL
-    OxidSupport\LoggingFramework\Component\ApiUser\Controller\GraphQL\PasswordController:
+    OxidSupport\Heartbeat\Component\ApiUser\Controller\GraphQL\PasswordController:
         public: true
 
     # Component: ApiUser - Framework (GraphQL)
-    OxidSupport\LoggingFramework\Component\ApiUser\Framework\NamespaceMapper:
+    OxidSupport\Heartbeat\Component\ApiUser\Framework\NamespaceMapper:
         tags: ['graphql_namespace_mapper']
 
-    OxidSupport\LoggingFramework\Component\ApiUser\Framework\PermissionProvider:
+    OxidSupport\Heartbeat\Component\ApiUser\Framework\PermissionProvider:
         public: true
         tags: ['graphql_permission_provider']
 
@@ -125,45 +125,45 @@ services:
     # Component: RequestLoggerRemote - Services
     # ==========================================================================
 
-    OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\SettingServiceInterface:
-        class: OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\SettingService
+    OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\SettingServiceInterface:
+        class: OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\SettingService
 
-    OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\ActivationServiceInterface:
-        class: OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\ActivationService
+    OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\ActivationServiceInterface:
+        class: OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\ActivationService
 
-    OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\SetupStatusServiceInterface:
-        class: OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\SetupStatusService
+    OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\SetupStatusServiceInterface:
+        class: OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\SetupStatusService
         public: true
 
-    OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\RemoteComponentStatusServiceInterface:
-        class: OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\RemoteComponentStatusService
+    OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\RemoteComponentStatusServiceInterface:
+        class: OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\RemoteComponentStatusService
         public: true
 
     # Component: RequestLoggerRemote - Controller/GraphQL
-    OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\GraphQL\SettingController:
+    OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\GraphQL\SettingController:
         public: true
 
-    OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\GraphQL\ActivationController:
+    OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\GraphQL\ActivationController:
         public: true
 
     # Component: RequestLoggerRemote - Controller/Admin
-    OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\Admin\PasswordResetController:
+    OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\Admin\PasswordResetController:
         public: true
         autowire: false
         tags:
-            - { name: 'oxid.view_controller', controller_key: 'loggingframework_remote_password_reset' }
+            - { name: 'oxid.view_controller', controller_key: 'heartbeat_remote_password_reset' }
 
-    OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\Admin\SetupController:
+    OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\Admin\SetupController:
         public: true
         autowire: false
         tags:
-            - { name: 'oxid.view_controller', controller_key: 'loggingframework_remote_setup' }
+            - { name: 'oxid.view_controller', controller_key: 'heartbeat_remote_setup' }
 
     # Component: RequestLoggerRemote - Framework (GraphQL)
-    OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Framework\NamespaceMapper:
+    OxidSupport\Heartbeat\Component\RequestLoggerRemote\Framework\NamespaceMapper:
         tags: ['graphql_namespace_mapper']
 
-    OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Framework\PermissionProvider:
+    OxidSupport\Heartbeat\Component\RequestLoggerRemote\Framework\PermissionProvider:
         public: true
         tags: ['graphql_permission_provider']
 
@@ -171,41 +171,41 @@ services:
     # Component: LogSender - Services
     # ==========================================================================
 
-    OxidSupport\LoggingFramework\Component\LogSender\Service\LogSenderStatusServiceInterface:
-        class: OxidSupport\LoggingFramework\Component\LogSender\Service\LogSenderStatusService
+    OxidSupport\Heartbeat\Component\LogSender\Service\LogSenderStatusServiceInterface:
+        class: OxidSupport\Heartbeat\Component\LogSender\Service\LogSenderStatusService
         public: true
 
-    OxidSupport\LoggingFramework\Component\LogSender\Service\LogReaderServiceInterface:
-        class: OxidSupport\LoggingFramework\Component\LogSender\Service\LogReaderService
+    OxidSupport\Heartbeat\Component\LogSender\Service\LogReaderServiceInterface:
+        class: OxidSupport\Heartbeat\Component\LogSender\Service\LogReaderService
         public: true
 
-    OxidSupport\LoggingFramework\Component\LogSender\Service\LogCollectorServiceInterface:
-        class: OxidSupport\LoggingFramework\Component\LogSender\Service\LogCollectorService
+    OxidSupport\Heartbeat\Component\LogSender\Service\LogCollectorServiceInterface:
+        class: OxidSupport\Heartbeat\Component\LogSender\Service\LogCollectorService
         public: true
         arguments:
-            $providers: !tagged_iterator 'oxs.logsender.provider'
+            $providers: !tagged_iterator 'oxs.heartbeat.provider'
 
     # Component: LogSender - Built-in Providers
-    OxidSupport\LoggingFramework\Component\LogSender\Service\OxidCoreLogPathProvider:
+    OxidSupport\Heartbeat\Component\LogSender\Service\OxidCoreLogPathProvider:
         tags:
-            - { name: 'oxs.logsender.provider' }
+            - { name: 'oxs.heartbeat.provider' }
 
     # Component: LogSender - Controller/Admin
-    OxidSupport\LoggingFramework\Component\LogSender\Controller\Admin\SetupController:
+    OxidSupport\Heartbeat\Component\LogSender\Controller\Admin\SetupController:
         public: true
         autowire: false
         tags:
-            - { name: 'oxid.view_controller', controller_key: 'loggingframework_logsender_setup' }
+            - { name: 'oxid.view_controller', controller_key: 'heartbeat_logsender_setup' }
 
     # Component: LogSender - Controller/GraphQL
-    OxidSupport\LoggingFramework\Component\LogSender\Controller\GraphQL\LogController:
+    OxidSupport\Heartbeat\Component\LogSender\Controller\GraphQL\LogController:
         public: true
 
     # Component: LogSender - Framework (GraphQL)
-    OxidSupport\LoggingFramework\Component\LogSender\Framework\NamespaceMapper:
+    OxidSupport\Heartbeat\Component\LogSender\Framework\NamespaceMapper:
         tags: ['graphql_namespace_mapper']
 
-    OxidSupport\LoggingFramework\Component\LogSender\Framework\PermissionProvider:
+    OxidSupport\Heartbeat\Component\LogSender\Framework\PermissionProvider:
         public: true
         tags: ['graphql_permission_provider']
 
@@ -213,10 +213,10 @@ services:
     # Shop Facades
     # ==========================================================================
 
-    OxidSupport\LoggingFramework\Shop\Facade\ModuleSettingFacadeInterface:
-        class: OxidSupport\LoggingFramework\Shop\Facade\ModuleSettingFacade
+    OxidSupport\Heartbeat\Shop\Facade\ModuleSettingFacadeInterface:
+        class: OxidSupport\Heartbeat\Shop\Facade\ModuleSettingFacade
         public: true
 
-    OxidSupport\LoggingFramework\Shop\Facade\ShopFacadeInterface:
-        class: OxidSupport\LoggingFramework\Shop\Facade\ShopFacade
+    OxidSupport\Heartbeat\Shop\Facade\ShopFacadeInterface:
+        class: OxidSupport\Heartbeat\Shop\Facade\ShopFacade
         public: true

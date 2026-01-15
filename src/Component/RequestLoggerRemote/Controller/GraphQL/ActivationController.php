@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\GraphQL;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\GraphQL;
 
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\ActivationServiceInterface;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\RemoteComponentStatusServiceInterface;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\ActivationServiceInterface;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\RemoteComponentStatusServiceInterface;
 use TheCodingMachine\GraphQLite\Annotations\Logged;
 use TheCodingMachine\GraphQLite\Annotations\Mutation;
 use TheCodingMachine\GraphQLite\Annotations\Query;

@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\DataType;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\DataType;
 
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\DataType\SettingType;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\DataType\SettingType;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

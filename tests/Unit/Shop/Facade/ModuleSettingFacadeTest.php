@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Shop\Facade;
+namespace OxidSupport\Heartbeat\Tests\Unit\Shop\Facade;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Shop\Facade\ModuleSettingFacade;
-use OxidSupport\LoggingFramework\Shop\Facade\ModuleSettingFacadeInterface;
+use OxidSupport\Heartbeat\Shop\Facade\ModuleSettingFacade;
+use OxidSupport\Heartbeat\Shop\Facade\ModuleSettingFacadeInterface;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\String\UnicodeString;
 
 class ModuleSettingFacadeTest extends TestCase
 {
@@ -31,8 +30,8 @@ class ModuleSettingFacadeTest extends TestCase
         $this->moduleSettingService
             ->expects($this->once())
             ->method('getString')
-            ->with('oxsloggingframework_requestlogger_log_level', 'oxsloggingframework')
-            ->willReturn(new UnicodeString('debug'));
+            ->with('oxsheartbeat_requestlogger_log_level', 'oxsheartbeat')
+            ->willReturn('debug');
 
         $result = $this->facade->getLogLevel();
 
@@ -44,7 +43,7 @@ class ModuleSettingFacadeTest extends TestCase
         $this->moduleSettingService
             ->expects($this->once())
             ->method('getString')
-            ->willReturn(new UnicodeString('info'));
+            ->willReturn('info');
 
         $result = $this->facade->getLogLevel();
 
@@ -56,7 +55,7 @@ class ModuleSettingFacadeTest extends TestCase
         $this->moduleSettingService
             ->expects($this->once())
             ->method('getString')
-            ->willReturn(new UnicodeString('warning'));
+            ->willReturn('warning');
 
         $result = $this->facade->getLogLevel();
 
@@ -68,7 +67,7 @@ class ModuleSettingFacadeTest extends TestCase
         $this->moduleSettingService
             ->expects($this->once())
             ->method('getCollection')
-            ->with('oxsloggingframework_requestlogger_redact_fields', 'oxsloggingframework')
+            ->with('oxsheartbeat_requestlogger_redact_fields', 'oxsheartbeat')
             ->willReturn(['password', 'token']);
 
         $result = $this->facade->getRedactItems();
@@ -121,9 +120,9 @@ class ModuleSettingFacadeTest extends TestCase
             ->expects($this->exactly(3))
             ->method('getString')
             ->willReturnOnConsecutiveCalls(
-                new UnicodeString('debug'),
-                new UnicodeString('info'),
-                new UnicodeString('error')
+                'debug',
+                'info',
+                'error'
             );
 
         $result1 = $this->facade->getLogLevel();
@@ -156,11 +155,11 @@ class ModuleSettingFacadeTest extends TestCase
             ->method('getString')
             ->with(
                 $this->callback(function($arg) {
-                    return strpos($arg, 'oxsloggingframework_') === 0;
+                    return strpos($arg, 'oxsheartbeat_') === 0;
                 }),
-                'oxsloggingframework'
+                'oxsheartbeat'
             )
-            ->willReturn(new UnicodeString('info'));
+            ->willReturn('info');
 
         $this->facade->getLogLevel();
     }
@@ -172,9 +171,9 @@ class ModuleSettingFacadeTest extends TestCase
             ->method('getCollection')
             ->with(
                 $this->callback(function($arg) {
-                    return strpos($arg, 'oxsloggingframework_') === 0;
+                    return strpos($arg, 'oxsheartbeat_') === 0;
                 }),
-                'oxsloggingframework'
+                'oxsheartbeat'
             )
             ->willReturn([]);
 
@@ -186,7 +185,7 @@ class ModuleSettingFacadeTest extends TestCase
         $this->moduleSettingService
             ->expects($this->once())
             ->method('getBoolean')
-            ->with('oxsloggingframework_requestlogger_active', 'oxsloggingframework')
+            ->with('oxsheartbeat_requestlogger_active', 'oxsheartbeat')
             ->willReturn(true);
 
         $result = $this->facade->isRequestLoggerComponentActive();
@@ -199,7 +198,7 @@ class ModuleSettingFacadeTest extends TestCase
         $this->moduleSettingService
             ->expects($this->once())
             ->method('getBoolean')
-            ->with('oxsloggingframework_requestlogger_active', 'oxsloggingframework')
+            ->with('oxsheartbeat_requestlogger_active', 'oxsheartbeat')
             ->willReturn(false);
 
         $result = $this->facade->isRequestLoggerComponentActive();

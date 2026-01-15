@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\CorrelationId;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\CorrelationId;
 
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdGenerator;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdGeneratorInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdGenerator;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdGeneratorInterface;
 use PHPUnit\Framework\TestCase;
 
 class CorrelationIdGeneratorTest extends TestCase

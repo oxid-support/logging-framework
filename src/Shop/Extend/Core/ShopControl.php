@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Shop\Extend\Core;
+namespace OxidSupport\Heartbeat\Shop\Extend\Core;
 
 use OxidEsales\Eshop\Core\ShopControl as CoreShopControl;
 use OxidEsales\EshopCommunity\Core\Di\ContainerFacade;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Security\SensitiveDataRedactorInterface;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder\ShopRequestRecorderInterface;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\SymbolTracker;
-use OxidSupport\LoggingFramework\Shop\Facade\ModuleSettingFacadeInterface;
-use OxidSupport\LoggingFramework\Shop\Facade\ShopFacadeInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Security\SensitiveDataRedactorInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder\ShopRequestRecorderInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\SymbolTracker;
+use OxidSupport\Heartbeat\Shop\Facade\ModuleSettingFacadeInterface;
+use OxidSupport\Heartbeat\Shop\Facade\ShopFacadeInterface;
 
 class ShopControl extends CoreShopControl
 {

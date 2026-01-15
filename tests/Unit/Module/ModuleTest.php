@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Module;
+namespace OxidSupport\Heartbeat\Tests\Unit\Module;
 
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Module\Module;
 use PHPUnit\Framework\TestCase;
 
 class ModuleTest extends TestCase
@@ -26,7 +26,7 @@ class ModuleTest extends TestCase
 
     public function testModuleIdHasExpectedValue(): void
     {
-        $this->assertSame('oxsloggingframework', Module::ID);
+        $this->assertSame('oxsheartbeat', Module::ID);
     }
 
     public function testModuleIdIsLowercase(): void

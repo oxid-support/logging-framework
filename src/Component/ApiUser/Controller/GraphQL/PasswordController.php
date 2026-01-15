@@ -7,15 +7,15 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\ApiUser\Controller\GraphQL;
+namespace OxidSupport\Heartbeat\Component\ApiUser\Controller\GraphQL;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Component\ApiUser\Exception\InvalidTokenException;
-use OxidSupport\LoggingFramework\Component\ApiUser\Exception\PasswordTooShortException;
-use OxidSupport\LoggingFramework\Component\ApiUser\Exception\SetupNotAvailableException;
-use OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserServiceInterface;
-use OxidSupport\LoggingFramework\Component\ApiUser\Service\TokenGeneratorInterface;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Component\ApiUser\Exception\InvalidTokenException;
+use OxidSupport\Heartbeat\Component\ApiUser\Exception\PasswordTooShortException;
+use OxidSupport\Heartbeat\Component\ApiUser\Exception\SetupNotAvailableException;
+use OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserServiceInterface;
+use OxidSupport\Heartbeat\Component\ApiUser\Service\TokenGeneratorInterface;
 use TheCodingMachine\GraphQLite\Annotations\Logged;
 use TheCodingMachine\GraphQLite\Annotations\Mutation;
 use TheCodingMachine\GraphQLite\Annotations\Right;
@@ -30,11 +30,11 @@ final class PasswordController
     }
 
     /**
-     * Set the password for the Logging Framework API user.
+     * Set the password for the Heartbeat API user.
      * Requires a valid setup token. Token is invalidated after use.
      */
     #[Mutation]
-    public function loggingFrameworkSetPassword(string $token, string $password): bool
+    public function heartbeatSetPassword(string $token, string $password): bool
     {
         $this->assertSetupAvailable();
         $this->validateToken($token);
@@ -51,14 +51,14 @@ final class PasswordController
     }
 
     /**
-     * Reset the password for the Logging Framework API user to a placeholder value.
-     * This generates a new setup token that can be used with loggingFrameworkSetPassword.
+     * Reset the password for the Heartbeat API user to a placeholder value.
+     * This generates a new setup token that can be used with heartbeatSetPassword.
      * Requires admin authentication.
      */
     #[Mutation]
     #[Logged]
-    #[Right('OXSLOGGINGFRAMEWORK_PASSWORD_RESET')]
-    public function loggingFrameworkResetPassword(): string
+    #[Right('OXSHEARTBEAT_PASSWORD_RESET')]
+    public function heartbeatResetPassword(): string
     {
         // Generate new setup token
         $token = $this->tokenGenerator->generate();

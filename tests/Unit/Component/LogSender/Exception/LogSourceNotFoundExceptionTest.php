@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\LogSender\Exception;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\LogSender\Exception;
 
-use OxidSupport\LoggingFramework\Component\LogSender\Exception\LogSourceNotFoundException;
+use OxidSupport\Heartbeat\Component\LogSender\Exception\LogSourceNotFoundException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

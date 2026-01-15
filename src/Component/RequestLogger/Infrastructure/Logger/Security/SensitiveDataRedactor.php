@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Security;
+namespace OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Security;
 
-use OxidSupport\LoggingFramework\Shop\Facade\ModuleSettingFacadeInterface;
+use OxidSupport\Heartbeat\Shop\Facade\ModuleSettingFacadeInterface;
 
 class SensitiveDataRedactor implements SensitiveDataRedactorInterface
 {

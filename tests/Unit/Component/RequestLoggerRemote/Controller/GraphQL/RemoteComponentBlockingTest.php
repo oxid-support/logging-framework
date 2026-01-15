@@ -7,17 +7,17 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Controller\GraphQL;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Controller\GraphQL;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\GraphQL\ActivationController;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\GraphQL\SettingController;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Exception\RemoteComponentDisabledException;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\ActivationServiceInterface;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\RemoteComponentStatusService;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\RemoteComponentStatusServiceInterface;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\SettingServiceInterface;
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\GraphQL\ActivationController;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\GraphQL\SettingController;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Exception\RemoteComponentDisabledException;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\ActivationServiceInterface;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\RemoteComponentStatusService;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\RemoteComponentStatusServiceInterface;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\SettingServiceInterface;
+use OxidSupport\Heartbeat\Module\Module;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

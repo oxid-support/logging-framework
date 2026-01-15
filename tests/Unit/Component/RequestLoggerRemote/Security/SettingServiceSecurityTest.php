@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Security;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Security;
 
 use OxidEsales\GraphQL\ConfigurationAccess\Module\Service\ModuleSettingServiceInterface;
 use OxidEsales\GraphQL\ConfigurationAccess\Shared\DataType\BooleanSetting;
 use OxidEsales\GraphQL\ConfigurationAccess\Shared\DataType\StringSetting;
 use OxidEsales\GraphQL\ConfigurationAccess\Shared\DataType\SettingType as ConfigAccessSettingType;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Exception\InvalidCollectionException;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\SettingService;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Exception\InvalidCollectionException;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\SettingService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

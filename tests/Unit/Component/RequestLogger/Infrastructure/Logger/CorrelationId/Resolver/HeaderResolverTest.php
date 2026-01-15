@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver;
 
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\HeaderResolver;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\ResolverInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\HeaderResolver;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Resolver\ResolverInterface;
 use PHPUnit\Framework\TestCase;
 
 class HeaderResolverTest extends TestCase

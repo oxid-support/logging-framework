@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Controller\GraphQL;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Controller\GraphQL;
 
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\GraphQL\ActivationController;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\ActivationServiceInterface;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\RemoteComponentStatusServiceInterface;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\GraphQL\ActivationController;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\ActivationServiceInterface;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\RemoteComponentStatusServiceInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

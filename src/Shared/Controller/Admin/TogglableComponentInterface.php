@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Shared\Controller\Admin;
+namespace OxidSupport\Heartbeat\Shared\Controller\Admin;
 
 /**
  * Interface for component controllers that support on/off toggling.

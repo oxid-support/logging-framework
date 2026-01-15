@@ -1,8 +1,8 @@
 {#
- # OXS Logging Framework - Twig Macros
+ # OXS Heartbeat - Twig Macros
  #
  # Reusable UI components for consistent admin pages.
- # Usage: {% import "loggingframework_macros.html.twig" as lf %}
+ # Usage: {% import "heartbeat_macros.html.twig" as lf %}
  #}
 
 {#
@@ -41,7 +41,7 @@
 
     <div class="toggle-section {{ isDisabled ? 'disabled' : '' }}">
         <div>
-            <h3>{{ translate({ ident: "OXSREQUESTLOGGER_LF_COMPONENT_ACTIVATION" }) }}</h3>
+            <h3>{{ translate({ ident: "OXSHEARTBEAT_LF_COMPONENT_ACTIVATION" }) }}</h3>
         </div>
         <label class="toggle-switch">
             <input type="checkbox"

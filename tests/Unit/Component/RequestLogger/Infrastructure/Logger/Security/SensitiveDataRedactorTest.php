@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\Security;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\Security;
 
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Security\SensitiveDataRedactor;
-use OxidSupport\LoggingFramework\Shop\Facade\ModuleSettingFacadeInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Security\SensitiveDataRedactor;
+use OxidSupport\Heartbeat\Shop\Facade\ModuleSettingFacadeInterface;
 use PHPUnit\Framework\TestCase;
 
 class SensitiveDataRedactorTest extends TestCase

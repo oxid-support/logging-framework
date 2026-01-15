@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\LogSender\Service;
+namespace OxidSupport\Heartbeat\Component\LogSender\Service;
 
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogPath;
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogPathType;
-use OxidSupport\LoggingFramework\Shop\Facade\ShopFacadeInterface;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogPath;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogPathType;
+use OxidSupport\Heartbeat\Shop\Facade\ShopFacadeInterface;
 
 /**
  * Built-in provider for OXID's core log file (oxideshop.log).

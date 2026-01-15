@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Shared\Controller\Admin;
+namespace OxidSupport\Heartbeat\Tests\Unit\Shared\Controller\Admin;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Configuration\Dao\ShopConfigurationDaoInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Configuration\DataObject\ModuleConfiguration;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Configuration\DataObject\ShopConfiguration;
 use OxidEsales\EshopCommunity\Internal\Transition\Utility\ContextInterface;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\AbstractComponentController;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\ComponentControllerInterface;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\AbstractComponentController;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\ComponentControllerInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -57,11 +57,11 @@ final class AbstractComponentControllerTest extends TestCase
         return [
             'active component returns active text key' => [
                 true,
-                'OXSREQUESTLOGGER_LF_STATUS_ACTIVE',
+                'OXSHEARTBEAT_LF_STATUS_ACTIVE',
             ],
             'inactive component returns inactive text key' => [
                 false,
-                'OXSREQUESTLOGGER_LF_STATUS_INACTIVE',
+                'OXSHEARTBEAT_LF_STATUS_INACTIVE',
             ],
         ];
     }

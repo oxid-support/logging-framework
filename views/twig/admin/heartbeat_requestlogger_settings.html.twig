@@ -1,5 +1,5 @@
-{% extends "@oxsloggingframework/admin/loggingframework_base.html.twig" %}
-{% import "@oxsloggingframework/admin/loggingframework_macros.html.twig" as lf %}
+{% extends "@oxsheartbeat/admin/heartbeat_base.html.twig" %}
+{% import "@oxsheartbeat/admin/heartbeat_macros.html.twig" as lf %}
 
 {% block title %}Request Logger - Settings{% endblock %}
 
@@ -8,74 +8,74 @@
 {% set isActive = settings.componentActive %}
 
 {{ lf.page_header(
-    "OXSREQUESTLOGGER_LF_REQUESTLOGGER_TITLE",
+    "OXSHEARTBEAT_LF_REQUESTLOGGER_TITLE",
     oView.getStatusClass(),
     oView.getStatusTextKey(),
-    "OXSREQUESTLOGGER_LF_REQUESTLOGGER_DESC"
+    "OXSHEARTBEAT_LF_REQUESTLOGGER_DESC"
 ) }}
 
-{{ lf.toggle_section("loggingframework_requestlogger_settings", isActive, false, oViewConf.getSelfLink(), oViewConf.getHiddenSid()) }}
+{{ lf.toggle_section("heartbeat_requestlogger_settings", isActive, false, oViewConf.getSelfLink(), oViewConf.getHiddenSid()) }}
 
 <div>
     <form method="post" action="{{ oViewConf.getSelfLink()|raw }}" id="settingsForm">
         {{ oViewConf.getHiddenSid()|raw }}
-        <input type="hidden" name="cl" value="loggingframework_requestlogger_settings">
+        <input type="hidden" name="cl" value="heartbeat_requestlogger_settings">
         <input type="hidden" name="fnc" value="save">
 
         <div class="settings-group">
-            <h3>{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_ACTIVATION" }) }}</h3>
+            <h3>{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_ACTIVATION" }) }}</h3>
 
             <div class="setting-row">
-                <label class="setting-label">{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_LOG_FRONTEND" }) }}</label>
+                <label class="setting-label">{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_LOG_FRONTEND" }) }}</label>
                 <div class="setting-input">
                     <input type="checkbox" name="editval[logFrontend]" value="1" {{ settings.logFrontend ? 'checked' : '' }}>
-                    <div class="setting-help">{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_LOG_FRONTEND_HELP" }) }}</div>
+                    <div class="setting-help">{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_LOG_FRONTEND_HELP" }) }}</div>
                 </div>
             </div>
 
             <div class="setting-row">
-                <label class="setting-label">{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_LOG_ADMIN" }) }}</label>
+                <label class="setting-label">{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_LOG_ADMIN" }) }}</label>
                 <div class="setting-input">
                     <input type="checkbox" name="editval[logAdmin]" value="1" {{ settings.logAdmin ? 'checked' : '' }}>
-                    <div class="setting-help">{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_LOG_ADMIN_HELP" }) }}</div>
+                    <div class="setting-help">{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_LOG_ADMIN_HELP" }) }}</div>
                 </div>
             </div>
         </div>
 
         <div class="settings-group">
-            <h3>{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_LOGGING" }) }}</h3>
+            <h3>{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_LOGGING" }) }}</h3>
 
             <div class="setting-row">
-                <label class="setting-label">{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_DETAILED_LOGGING" }) }}</label>
+                <label class="setting-label">{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_DETAILED_LOGGING" }) }}</label>
                 <div class="setting-input">
                     <input type="hidden" name="editval[logLevel]" value="standard">
                     <input type="checkbox" name="editval[logLevel]" value="detailed" {{ settings.logLevel == 'detailed' ? 'checked' : '' }}>
-                    <div class="setting-help">{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_DETAILED_LOGGING_HELP" }) }}</div>
+                    <div class="setting-help">{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_DETAILED_LOGGING_HELP" }) }}</div>
                 </div>
             </div>
 
             <div class="setting-row">
-                <label class="setting-label">{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_REDACT_ALL" }) }}</label>
+                <label class="setting-label">{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_REDACT_ALL" }) }}</label>
                 <div class="setting-input">
                     <input type="checkbox" name="editval[redactAllValues]" value="1" {{ settings.redactAllValues ? 'checked' : '' }}>
-                    <div class="setting-help">{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_REDACT_ALL_HELP" }) }}</div>
+                    <div class="setting-help">{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_REDACT_ALL_HELP" }) }}</div>
                 </div>
             </div>
         </div>
 
         <div class="settings-group">
-            <h3>{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_REDACTION" }) }}</h3>
+            <h3>{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_REDACTION" }) }}</h3>
 
             <div class="setting-row">
-                <label class="setting-label">{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_REDACT_FIELDS" }) }}</label>
+                <label class="setting-label">{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_REDACT_FIELDS" }) }}</label>
                 <div class="setting-input">
                     <textarea name="editval[redactFields]">{{ settings.redactFields|join("\n") }}</textarea>
-                    <div class="setting-help">{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_REDACT_FIELDS_HELP" }) }}</div>
+                    <div class="setting-help">{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_REDACT_FIELDS_HELP" }) }}</div>
                 </div>
             </div>
         </div>
 
-        <button type="submit" class="btn-save" id="saveBtn">{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_SAVE" }) }}</button>
+        <button type="submit" class="btn-save" id="saveBtn">{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_SAVE" }) }}</button>
     </form>
 </div>
 {% endblock %}
@@ -86,8 +86,8 @@
     var form = document.getElementById('settingsForm');
     var saveBtn = document.getElementById('saveBtn');
     var originalValues = {};
-    var unsavedText = '{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_SAVE" }) }} *';
-    var savedText = '{{ translate({ ident: "OXSREQUESTLOGGER_LF_SETTINGS_SAVE" }) }}';
+    var unsavedText = '{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_SAVE" }) }} *';
+    var savedText = '{{ translate({ ident: "OXSHEARTBEAT_LF_SETTINGS_SAVE" }) }}';
 
     function storeOriginalValues() {
         var inputs = form.querySelectorAll('input, textarea, select');

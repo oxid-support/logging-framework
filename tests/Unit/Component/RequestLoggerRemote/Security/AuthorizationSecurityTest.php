@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Security;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Security;
 
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\GraphQL\ActivationController;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\GraphQL\SettingController;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Framework\PermissionProvider;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\GraphQL\ActivationController;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\GraphQL\SettingController;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Framework\PermissionProvider;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -102,8 +102,8 @@ class AuthorizationSecurityTest extends TestCase
         $provider = new PermissionProvider();
         $permissions = $provider->getPermissions();
 
-        $this->assertArrayHasKey('oxsloggingframework_api', $permissions);
-        $this->assertNotEmpty($permissions['oxsloggingframework_api']);
+        $this->assertArrayHasKey('oxsheartbeat_api', $permissions);
+        $this->assertNotEmpty($permissions['oxsheartbeat_api']);
     }
 
     public function testPermissionsAreDefinedForAdminGroup(): void
@@ -126,7 +126,7 @@ class AuthorizationSecurityTest extends TestCase
             'REQUEST_LOGGER_ACTIVATE',
         ];
 
-        foreach (['oxsloggingframework_api', 'oxidadmin'] as $group) {
+        foreach (['oxsheartbeat_api', 'oxidadmin'] as $group) {
             foreach ($requiredPermissions as $permission) {
                 $this->assertContains(
                     $permission,

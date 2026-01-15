@@ -7,21 +7,21 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\ApiUser\Service;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\ApiUser\Service;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Result;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
-use OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserStatusService;
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserStatusService;
+use OxidSupport\Heartbeat\Module\Module;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(ApiUserStatusService::class)]
 final class ApiUserStatusServiceTest extends TestCase
 {
-    private const MIGRATION_TABLE = 'oxmigrations_oxsloggingframework';
-    private const EXPECTED_MIGRATION = 'OxidSupport\\LoggingFramework\\Migrations\\Version20251223000001';
+    private const MIGRATION_TABLE = 'oxmigrations_oxsheartbeat';
+    private const EXPECTED_MIGRATION = 'OxidSupport\\Heartbeat\\Migrations\\Version20251223000001';
 
     // ===========================================
     // isMigrationExecuted() tests
@@ -158,11 +158,10 @@ final class ApiUserStatusServiceTest extends TestCase
             ->method('fetchAssociative')
             ->willReturn([
                 'OXPASSWORD' => '$2y$10$somehash',
-                'OXPASSSALT' => 'somesalt123',
             ]);
 
         $queryBuilder = $this->createMock(QueryBuilder::class);
-        $queryBuilder->expects($this->once())->method('select')->with('OXPASSWORD', 'OXPASSSALT')->willReturnSelf();
+        $queryBuilder->expects($this->once())->method('select')->with('OXPASSWORD')->willReturnSelf();
         $queryBuilder->expects($this->once())->method('from')->with('oxuser')->willReturnSelf();
         $queryBuilder->expects($this->once())->method('where')->with('OXUSERNAME = :email')->willReturnSelf();
         $queryBuilder->expects($this->once())->method('setParameter')->with('email', Module::API_USER_EMAIL)->willReturnSelf();
@@ -176,14 +175,13 @@ final class ApiUserStatusServiceTest extends TestCase
         $this->assertTrue($result);
     }
 
-    public function testIsApiUserPasswordSetReturnsFalseWhenSaltIsEmpty(): void
+    public function testIsApiUserPasswordSetReturnsFalseWhenPasswordIsNotBCrypt(): void
     {
         $result = $this->createMock(Result::class);
         $result->expects($this->once())
             ->method('fetchAssociative')
             ->willReturn([
-                'OXPASSWORD' => 'placeholder_hash',
-                'OXPASSSALT' => '',
+                'OXPASSWORD' => 'placeholder_hash_not_bcrypt',
             ]);
 
         $queryBuilder = $this->createMock(QueryBuilder::class);
@@ -248,11 +246,10 @@ final class ApiUserStatusServiceTest extends TestCase
         $userExistsResult = $this->createMock(Result::class);
         $userExistsResult->method('fetchOne')->willReturn('1');
 
-        // Mock for password check
+        // Mock for password check - must be BCrypt hash
         $passwordResult = $this->createMock(Result::class);
         $passwordResult->method('fetchAssociative')->willReturn([
-            'OXPASSWORD' => 'hash',
-            'OXPASSSALT' => 'salt',
+            'OXPASSWORD' => '$2y$10$somevalidbcrypthash',
         ]);
 
         $queryBuilder = $this->createMock(QueryBuilder::class);

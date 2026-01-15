@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Security;
+namespace OxidSupport\Heartbeat\Tests\Unit\Security;
 
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProviderInterface;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\LoggerFactory;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessorInterface;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Shop\Facade\ModuleSettingFacadeInterface;
-use OxidSupport\LoggingFramework\Shop\Facade\ShopFacadeInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProviderInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\LoggerFactory;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessorInterface;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Shop\Facade\ModuleSettingFacadeInterface;
+use OxidSupport\Heartbeat\Shop\Facade\ShopFacadeInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

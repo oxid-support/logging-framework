@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\LogSender\Service;
+namespace OxidSupport\Heartbeat\Component\LogSender\Service;
 
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogPath;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogPath;
 
 /**
  * Interface for services that provide log paths.

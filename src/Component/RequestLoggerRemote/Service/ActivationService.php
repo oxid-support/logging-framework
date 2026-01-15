@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service;
 
 use OxidEsales\GraphQL\ConfigurationAccess\Module\Service\ModuleSettingServiceInterface as ConfigAccessSettingService;
-use OxidSupport\LoggingFramework\Module\Module as RequestLoggerModule;
+use OxidSupport\Heartbeat\Module\Module as RequestLoggerModule;
 
 /**
  * Service for managing Request Logger component activation state.

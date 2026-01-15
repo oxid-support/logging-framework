@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\LogSender\Service;
+namespace OxidSupport\Heartbeat\Component\LogSender\Service;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogPath;
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogPathType;
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogSource;
-use OxidSupport\LoggingFramework\Component\LogSender\Exception\LogSourceNotFoundException;
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogPath;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogPathType;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogSource;
+use OxidSupport\Heartbeat\Component\LogSender\Exception\LogSourceNotFoundException;
+use OxidSupport\Heartbeat\Module\Module;
 
 /**
  * Service that collects log sources from static paths and DI-tagged providers.

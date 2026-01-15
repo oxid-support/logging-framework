@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter;
 
 /**
  * NAMESPACE FUNCTION OVERRIDE TECHNIQUE
@@ -18,7 +18,7 @@ namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infras
  * 2. Global namespace if not found in current namespace
  *
  * By defining header() and headers_sent() in the SAME namespace as the production
- * code (OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter), when HeaderEmitter
+ * code (OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter), when HeaderEmitter
  * calls header(), PHP finds our override function instead of the global one.
  *
  * STRUCTURE:
@@ -52,7 +52,7 @@ namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infras
  */
 
 // Override global functions for the Emitter namespace to capture calls
-namespace OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter;
+namespace OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter;
 
 /** @var array<string> Stores headers set during tests */
 $GLOBALS['test_headers'] = [];
@@ -85,7 +85,7 @@ function headers_sent(&$file = null, &$line = null): bool
 }
 
 // Back to test namespace
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter;
 
 class HeaderEmitterTest extends \PHPUnit\Framework\TestCase
 {
@@ -97,21 +97,21 @@ class HeaderEmitterTest extends \PHPUnit\Framework\TestCase
 
     public function testImplementsInterface(): void
     {
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter('X-Correlation-Id');
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter('X-Correlation-Id');
 
-        $this->assertInstanceOf(\OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\EmitterInterface::class, $emitter);
+        $this->assertInstanceOf(\OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\EmitterInterface::class, $emitter);
     }
 
     public function testEmitConvertsHeaderNameToUppercase(): void
     {
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter('x-correlation-id');
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter('x-correlation-id');
 
-        $this->assertInstanceOf(\OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter::class, $emitter);
+        $this->assertInstanceOf(\OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter::class, $emitter);
     }
 
     public function testEmitSendsHeaderWhenHeadersNotSent(): void
     {
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter('X-Correlation-Id');
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter('X-Correlation-Id');
         $id = 'test-correlation-id-123';
 
         $emitter->emit($id);
@@ -121,7 +121,7 @@ class HeaderEmitterTest extends \PHPUnit\Framework\TestCase
 
     public function testEmitWithDifferentHeaderName(): void
     {
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter('X-Request-Id');
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter('X-Request-Id');
         $id = 'request-456';
 
         $emitter->emit($id);
@@ -131,7 +131,7 @@ class HeaderEmitterTest extends \PHPUnit\Framework\TestCase
 
     public function testEmitDoesNotFailWhenHeadersAlreadySent(): void
     {
-        $emitter = new \OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter('X-Correlation-Id');
+        $emitter = new \OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\Emitter\HeaderEmitter('X-Correlation-Id');
 
         // Should not throw exception even if we can't set headers
         $emitter->emit('test-id');

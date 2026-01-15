@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Processor;
+namespace OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Processor;
 
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProviderInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProviderInterface;
 
 final class CorrelationIdProcessor implements CorrelationIdProcessorInterface
 {

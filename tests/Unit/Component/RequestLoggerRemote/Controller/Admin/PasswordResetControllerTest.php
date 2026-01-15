@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Controller\Admin;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Controller\Admin;
 
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\Admin\PasswordResetController;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\Admin\PasswordResetController;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

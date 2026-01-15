@@ -7,17 +7,17 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\LogSender\Service;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\LogSender\Service;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogPath;
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogPathType;
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogSource;
-use OxidSupport\LoggingFramework\Component\LogSender\Exception\LogSourceNotFoundException;
-use OxidSupport\LoggingFramework\Component\LogSender\Service\LogCollectorService;
-use OxidSupport\LoggingFramework\Component\LogSender\Service\LogCollectorServiceInterface;
-use OxidSupport\LoggingFramework\Component\LogSender\Service\LogPathProviderInterface;
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogPath;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogPathType;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogSource;
+use OxidSupport\Heartbeat\Component\LogSender\Exception\LogSourceNotFoundException;
+use OxidSupport\Heartbeat\Component\LogSender\Service\LogCollectorService;
+use OxidSupport\Heartbeat\Component\LogSender\Service\LogCollectorServiceInterface;
+use OxidSupport\Heartbeat\Component\LogSender\Service\LogPathProviderInterface;
+use OxidSupport\Heartbeat\Module\Module;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

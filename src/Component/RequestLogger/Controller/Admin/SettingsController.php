@@ -7,20 +7,20 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLogger\Controller\Admin;
+namespace OxidSupport\Heartbeat\Component\RequestLogger\Controller\Admin;
 
 use OxidEsales\Eshop\Core\Registry;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\AbstractComponentController;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\TogglableComponentInterface;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\AbstractComponentController;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\TogglableComponentInterface;
 
 /**
- * Request Logger settings controller for the Logging Framework.
+ * Request Logger settings controller for the Heartbeat.
  * Allows configuration of the Request Logger component.
  */
 class SettingsController extends AbstractComponentController implements TogglableComponentInterface
 {
-    protected $_sThisTemplate = '@oxsloggingframework/admin/loggingframework_requestlogger_settings';
+    protected $_sThisTemplate = '@oxsheartbeat/admin/heartbeat_requestlogger_settings';
 
     public function isComponentActive(): bool
     {

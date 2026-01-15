@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger;
+namespace OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger;
 
 use Exception;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProviderInterface;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessorInterface;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Shop\Facade\ModuleSettingFacadeInterface;
-use OxidSupport\LoggingFramework\Shop\Facade\ShopFacadeInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProviderInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessorInterface;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Shop\Facade\ModuleSettingFacadeInterface;
+use OxidSupport\Heartbeat\Shop\Facade\ShopFacadeInterface;
 
 class LoggerFactory
 {

@@ -7,19 +7,18 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Core;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Core;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Result;
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Core\ModuleEvents;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Core\ModuleEvents;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use Symfony\Component\String\UnicodeString;
 
 /**
  * Tests for ModuleEvents focusing on the workflow state machine.
@@ -52,7 +51,7 @@ final class ModuleEventsTest extends TestCase
             ->expects($this->once())
             ->method('getString')
             ->with(Module::SETTING_APIUSER_SETUP_TOKEN, Module::ID)
-            ->willReturn(new UnicodeString(''));
+            ->willReturn('');
 
         // Password is placeholder (not BCrypt)
         $result = $this->createMock(Result::class);
@@ -110,7 +109,7 @@ final class ModuleEventsTest extends TestCase
             ->expects($this->once())
             ->method('getString')
             ->with(Module::SETTING_APIUSER_SETUP_TOKEN, Module::ID)
-            ->willReturn(new UnicodeString('existing-token-12345'));
+            ->willReturn('existing-token-12345');
 
         // Should NOT save a new token
         $moduleSettingService
@@ -143,7 +142,7 @@ final class ModuleEventsTest extends TestCase
             ->expects($this->once())
             ->method('getString')
             ->with(Module::SETTING_APIUSER_SETUP_TOKEN, Module::ID)
-            ->willReturn(new UnicodeString(''));
+            ->willReturn('');
 
         // Password is BCrypt (setup was completed)
         $result = $this->createMock(Result::class);
@@ -194,7 +193,7 @@ final class ModuleEventsTest extends TestCase
         $moduleSettingService
             ->expects($this->once())
             ->method('getString')
-            ->willReturn(new UnicodeString(''));
+            ->willReturn('');
 
         $result = $this->createMock(Result::class);
         $result->expects($this->once())
@@ -239,7 +238,7 @@ final class ModuleEventsTest extends TestCase
         $moduleSettingService
             ->expects($this->once())
             ->method('getString')
-            ->willReturn(new UnicodeString(''));
+            ->willReturn('');
 
         $result = $this->createMock(Result::class);
         $result->expects($this->once())
@@ -333,7 +332,7 @@ final class ModuleEventsTest extends TestCase
         $moduleSettingService
             ->expects($this->once())
             ->method('getString')
-            ->willReturn(new UnicodeString(''));
+            ->willReturn('');
 
         $queryBuilderFactory = $this->createMock(QueryBuilderFactoryInterface::class);
         $queryBuilderFactory->method('create')
@@ -370,7 +369,7 @@ final class ModuleEventsTest extends TestCase
         $moduleSettingService
             ->expects($this->once())
             ->method('getString')
-            ->willReturn(new UnicodeString(''));
+            ->willReturn('');
 
         // User not found - returns null/empty
         $result = $this->createMock(Result::class);
@@ -419,7 +418,7 @@ final class ModuleEventsTest extends TestCase
         $moduleSettingService
             ->expects($this->once())
             ->method('getString')
-            ->willReturn(new UnicodeString(''));
+            ->willReturn('');
 
         $result = $this->createMock(Result::class);
         $result->expects($this->once())

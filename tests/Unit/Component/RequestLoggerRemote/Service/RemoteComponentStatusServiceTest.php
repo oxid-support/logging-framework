@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Service;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Service;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Exception\RemoteComponentDisabledException;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\RemoteComponentStatusService;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\RemoteComponentStatusServiceInterface;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Exception\RemoteComponentDisabledException;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\RemoteComponentStatusService;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\RemoteComponentStatusServiceInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -114,6 +114,6 @@ final class RemoteComponentStatusServiceTest extends TestCase
     public function testUsesCorrectSettingConstant(): void
     {
         // Verify the service uses the correct module setting constant
-        $this->assertSame('oxsloggingframework_remote_active', Module::SETTING_REMOTE_ACTIVE);
+        $this->assertSame('oxsheartbeat_remote_active', Module::SETTING_REMOTE_ACTIVE);
     }
 }

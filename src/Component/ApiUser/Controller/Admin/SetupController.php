@@ -7,21 +7,21 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\ApiUser\Controller\Admin;
+namespace OxidSupport\Heartbeat\Component\ApiUser\Controller\Admin;
 
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserServiceInterface;
-use OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserStatusServiceInterface;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\AbstractComponentController;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserServiceInterface;
+use OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserStatusServiceInterface;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\AbstractComponentController;
 
 /**
- * API User setup controller for the Logging Framework.
+ * API User setup controller for the Heartbeat.
  * Displays the setup workflow for API user configuration.
  */
 class SetupController extends AbstractComponentController
 {
-    protected $_sThisTemplate = '@oxsloggingframework/admin/loggingframework_apiuser_setup';
+    protected $_sThisTemplate = '@oxsheartbeat/admin/heartbeat_apiuser_setup';
 
     private const GRAPHQL_BASE_MODULE_ID = 'oe_graphql_base';
 
@@ -42,8 +42,8 @@ class SetupController extends AbstractComponentController
     public function getStatusTextKey(): string
     {
         return $this->isSetupComplete()
-            ? 'OXSLOGGINGFRAMEWORK_APIUSER_STATUS_READY'
-            : 'OXSLOGGINGFRAMEWORK_APIUSER_STATUS_SETUP_REQUIRED';
+            ? 'OXSHEARTBEAT_APIUSER_STATUS_READY'
+            : 'OXSHEARTBEAT_APIUSER_STATUS_SETUP_REQUIRED';
     }
 
     /**
@@ -58,9 +58,9 @@ class SetupController extends AbstractComponentController
     }
 
     /**
-     * Check if the Logging Framework module is activated.
+     * Check if the Heartbeat module is activated.
      */
-    public function isLoggingFrameworkModuleActivated(): bool
+    public function isHeartbeatModuleActivated(): bool
     {
         return $this->isModuleActivated(Module::ID);
     }

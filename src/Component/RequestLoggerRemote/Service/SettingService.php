@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service;
 
 use OxidEsales\GraphQL\ConfigurationAccess\Module\Service\ModuleSettingServiceInterface as ConfigAccessSettingService;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\DataType\SettingType;
-use OxidSupport\LoggingFramework\Module\Module as RequestLoggerModule;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Exception\InvalidCollectionException;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\DataType\SettingType;
+use OxidSupport\Heartbeat\Module\Module as RequestLoggerModule;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Exception\InvalidCollectionException;
 
 /**
  * Service for managing Request Logger module settings.
@@ -20,7 +20,7 @@ use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Exception\Invalid
  * This service wraps the official OXID configuration-access module's ModuleSettingService,
  * providing a simplified API specifically for the Request Logger module. This approach:
  * - Avoids code duplication by delegating to the official module
- * - Maintains custom permission control via the oxsloggingframework_api group
+ * - Maintains custom permission control via the oxsheartbeat_api group
  * - Provides a moduleId-free API for easier consumption
  */
 final readonly class SettingService implements SettingServiceInterface

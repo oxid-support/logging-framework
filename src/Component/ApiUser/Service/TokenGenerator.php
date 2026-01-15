@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\ApiUser\Service;
+namespace OxidSupport\Heartbeat\Component\ApiUser\Service;
 
 use OxidEsales\Eshop\Core\Registry;
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Shop\Facade;
+namespace OxidSupport\Heartbeat\Tests\Unit\Shop\Facade;
 
-use OxidSupport\LoggingFramework\Shop\Facade\ShopFacade;
-use OxidSupport\LoggingFramework\Shop\Facade\ShopFacadeInterface;
+use OxidSupport\Heartbeat\Shop\Facade\ShopFacade;
+use OxidSupport\Heartbeat\Shop\Facade\ShopFacadeInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
@@ -257,7 +257,7 @@ class ShopFacadeTest extends TestCase
     {
         $reflection = new ReflectionClass(ShopFacade::class);
         $this->assertSame(
-            'OxidSupport\LoggingFramework\Shop\Facade',
+            'OxidSupport\Heartbeat\Shop\Facade',
             $reflection->getNamespaceName()
         );
     }

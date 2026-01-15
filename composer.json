@@ -1,6 +1,6 @@
 {
-    "name": "oxid-support/logging-framework",
-    "description": "OXID eShop Logging Framework with detailed request logging, correlation ID tracking, symbol monitoring, and GraphQL remote configuration",
+    "name": "oxid-support/heartbeat",
+    "description": "OXID eShop Heartbeat module with detailed request logging, correlation ID tracking, symbol monitoring, and GraphQL remote configuration",
     "type": "oxideshop-module",
     "license": [
         "proprietary"
@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "OxidSupport\\LoggingFramework\\": "src/"
+            "OxidSupport\\Heartbeat\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "OxidSupport\\LoggingFramework\\Tests\\": "tests/"
+            "OxidSupport\\Heartbeat\\Tests\\": "tests/"
         }
     }
 }

@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Shared\Controller\Admin;
+namespace OxidSupport\Heartbeat\Shared\Controller\Admin;
 
 /**
- * Interface for Logging Framework component controllers.
+ * Interface for Heartbeat component controllers.
  *
  * Provides a consistent API for component status and activation,
  * ensuring all component pages display status information consistently.

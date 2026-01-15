@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\LogSender\Service;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\LogSender\Service;
 
-use OxidSupport\LoggingFramework\Component\LogSender\Exception\LogPathNotFoundException;
-use OxidSupport\LoggingFramework\Component\LogSender\Service\LogReaderService;
+use OxidSupport\Heartbeat\Component\LogSender\Exception\LogPathNotFoundException;
+use OxidSupport\Heartbeat\Component\LogSender\Service\LogReaderService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -224,7 +224,7 @@ final class LogReaderServiceTest extends TestCase
     public function testServiceImplementsInterface(): void
     {
         $this->assertInstanceOf(
-            \OxidSupport\LoggingFramework\Component\LogSender\Service\LogReaderServiceInterface::class,
+            \OxidSupport\Heartbeat\Component\LogSender\Service\LogReaderServiceInterface::class,
             $this->service
         );
     }

@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\LogSender\Service;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\LogSender\Service;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Component\LogSender\Service\LogSenderStatusService;
-use OxidSupport\LoggingFramework\Component\LogSender\Service\LogSenderStatusServiceInterface;
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Component\LogSender\Service\LogSenderStatusService;
+use OxidSupport\Heartbeat\Component\LogSender\Service\LogSenderStatusServiceInterface;
+use OxidSupport\Heartbeat\Module\Module;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

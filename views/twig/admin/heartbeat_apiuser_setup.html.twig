@@ -1,98 +1,98 @@
-{% extends "@oxsloggingframework/admin/loggingframework_base.html.twig" %}
-{% import "@oxsloggingframework/admin/loggingframework_macros.html.twig" as lf %}
+{% extends "@oxsheartbeat/admin/heartbeat_base.html.twig" %}
+{% import "@oxsheartbeat/admin/heartbeat_macros.html.twig" as lf %}
 
 {% block title %}API User - Setup{% endblock %}
 
 {% block body %}
 {% set setupToken = oView.getSetupToken() %}
 {% set migrationExecuted = oView.isMigrationExecuted() %}
-{% set moduleActivated = oView.isLoggingFrameworkModuleActivated() %}
+{% set moduleActivated = oView.isHeartbeatModuleActivated() %}
 {% set graphqlBaseActivated = oView.isGraphqlBaseActivated() %}
 {% set apiUserCreated = oView.isApiUserCreated() %}
 {% set apiUserPasswordSet = oView.isApiUserPasswordSet() %}
 {% set setupComplete = oView.isSetupComplete() %}
 
 {{ lf.page_header(
-    "OXSLOGGINGFRAMEWORK_APIUSER_TITLE",
+    "OXSHEARTBEAT_APIUSER_TITLE",
     oView.getStatusClass(),
     oView.getStatusTextKey(),
-    "OXSLOGGINGFRAMEWORK_APIUSER_DESC"
+    "OXSHEARTBEAT_APIUSER_DESC"
 ) }}
 
 <div>
 {% if setupComplete %}
     <div class="setup-complete">
-        <h3>&#10004; {{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_SETUP_COMPLETE_TITLE" }) }}</h3>
-        <p style="margin: 0;">{{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_SETUP_COMPLETE_TEXT" }) }}</p>
+        <h3>&#10004; {{ translate({ ident: "OXSHEARTBEAT_APIUSER_SETUP_COMPLETE_TITLE" }) }}</h3>
+        <p style="margin: 0;">{{ translate({ ident: "OXSHEARTBEAT_APIUSER_SETUP_COMPLETE_TEXT" }) }}</p>
     </div>
 {% else %}
     <div class="setup-workflow">
-        <h3>{{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_SETUP_TITLE" }) }}</h3>
+        <h3>{{ translate({ ident: "OXSHEARTBEAT_APIUSER_SETUP_TITLE" }) }}</h3>
         <ol class="workflow-steps">
             {# Step 1: GraphQL Base installed & activated #}
             <li class="{{ graphqlBaseActivated ? 'done' : 'active' }}">
-                {{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_STEP_GRAPHQL_BASE" }) }}
+                {{ translate({ ident: "OXSHEARTBEAT_APIUSER_STEP_GRAPHQL_BASE" }) }}
                 {% if not graphqlBaseActivated %}<br>
-                <small style="font-weight: normal;">{{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_STEP_GRAPHQL_BASE_DESC" }) }}</small>
+                <small style="font-weight: normal;">{{ translate({ ident: "OXSHEARTBEAT_APIUSER_STEP_GRAPHQL_BASE_DESC" }) }}</small>
                 {% endif %}
             </li>
 
-            {# Step 2: Logging Framework module installed & activated #}
+            {# Step 2: Heartbeat module installed & activated #}
             <li class="{{ moduleActivated ? 'done' : (graphqlBaseActivated ? 'active' : 'pending') }}">
-                {{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_STEP_ACTIVATE" }) }}
+                {{ translate({ ident: "OXSHEARTBEAT_APIUSER_STEP_ACTIVATE" }) }}
             </li>
 
             {# Step 3: Run migrations #}
             {% if not migrationExecuted %}
             <li class="{{ (graphqlBaseActivated and moduleActivated) ? 'active' : 'pending' }}">
-                {{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_STEP_MIGRATE" }) }}
+                {{ translate({ ident: "OXSHEARTBEAT_APIUSER_STEP_MIGRATE" }) }}
                 {% if graphqlBaseActivated and moduleActivated %}<br>
-                <small style="font-weight: normal;">{{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_MIGRATION_REQUIRED_TEXT" }) }}</small><br>
+                <small style="font-weight: normal;">{{ translate({ ident: "OXSHEARTBEAT_APIUSER_MIGRATION_REQUIRED_TEXT" }) }}</small><br>
                 {{ lf.copy_code(
-                    "./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oxsloggingframework",
+                    "./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oxsheartbeat",
                     "migration",
-                    "OXSLOGGINGFRAMEWORK_APIUSER_COPIED"
+                    "OXSHEARTBEAT_APIUSER_COPIED"
                 ) }}
                 {% endif %}
             </li>
             {% else %}
-            <li class="done">{{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_STEP_MIGRATE" }) }}</li>
+            <li class="done">{{ translate({ ident: "OXSHEARTBEAT_APIUSER_STEP_MIGRATE" }) }}</li>
             {% endif %}
 
             {# Step 4: Send token #}
             <li class="{{ (migrationExecuted and graphqlBaseActivated and setupToken != '') ? 'active' : (apiUserPasswordSet ? 'done' : 'pending') }}">
-                {{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_STEP_SEND_TOKEN" }) }}
+                {{ translate({ ident: "OXSHEARTBEAT_APIUSER_STEP_SEND_TOKEN" }) }}
                 {% if migrationExecuted and graphqlBaseActivated and setupToken != '' and not apiUserPasswordSet %}<br>
-                <small style="font-weight: normal;">{{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_STEP_SEND_TOKEN_DESC" }) }}</small><br>
-                {{ lf.copy_code(setupToken, "token", "OXSLOGGINGFRAMEWORK_APIUSER_COPIED") }}
+                <small style="font-weight: normal;">{{ translate({ ident: "OXSHEARTBEAT_APIUSER_STEP_SEND_TOKEN_DESC" }) }}</small><br>
+                {{ lf.copy_code(setupToken, "token", "OXSHEARTBEAT_APIUSER_COPIED") }}
                 {% endif %}
             </li>
 
             {# Step 5: Wait for access #}
-            <li class="{{ apiUserPasswordSet ? 'done' : 'pending' }}">{{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_STEP_WAIT_SUPPORT" }) }}</li>
+            <li class="{{ apiUserPasswordSet ? 'done' : 'pending' }}">{{ translate({ ident: "OXSHEARTBEAT_APIUSER_STEP_WAIT_SUPPORT" }) }}</li>
         </ol>
         {% if not graphqlBaseActivated %}
         <p style="margin-top: 15px; padding: 10px; background: #fff3e0; border: 1px solid #ff9800; border-radius: 4px; color: #e65100;">
-            <strong>&#9888; {{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_PREREQUISITES_WARNING" }) }}</strong>
+            <strong>&#9888; {{ translate({ ident: "OXSHEARTBEAT_APIUSER_PREREQUISITES_WARNING" }) }}</strong>
         </p>
         {% endif %}
     </div>
 {% endif %}
 
 <details class="api-reset-section">
-    <summary><h3>{{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_RESET_TITLE" }) }}</h3></summary>
+    <summary><h3>{{ translate({ ident: "OXSHEARTBEAT_APIUSER_RESET_TITLE" }) }}</h3></summary>
     <div class="reset-content">
-        <p>{{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_RESET_DESCRIPTION" }) }}</p>
+        <p>{{ translate({ ident: "OXSHEARTBEAT_APIUSER_RESET_DESCRIPTION" }) }}</p>
         <ul>
-            <li>&#10060; {{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_WARNING_1" }) }}</li>
-            <li>&#10060; {{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_WARNING_2" }) }}</li>
-            <li>&#10060; {{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_WARNING_3" }) }}</li>
-            <li>&#10060; {{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_WARNING_4" }) }}</li>
+            <li>&#10060; {{ translate({ ident: "OXSHEARTBEAT_APIUSER_WARNING_1" }) }}</li>
+            <li>&#10060; {{ translate({ ident: "OXSHEARTBEAT_APIUSER_WARNING_2" }) }}</li>
+            <li>&#10060; {{ translate({ ident: "OXSHEARTBEAT_APIUSER_WARNING_3" }) }}</li>
+            <li>&#10060; {{ translate({ ident: "OXSHEARTBEAT_APIUSER_WARNING_4" }) }}</li>
         </ul>
         <div style="margin: 15px 0 0 0; padding: 15px; background: #fff3e0; border: 1px solid #ff9800; border-radius: 4px;">
             <form method="post" action="{{ oViewConf.getSelfLink()|raw }}">
                 {{ oViewConf.getHiddenSid()|raw }}
-                <input type="hidden" name="cl" value="loggingframework_apiuser_setup">
+                <input type="hidden" name="cl" value="heartbeat_apiuser_setup">
                 <input type="hidden" name="fnc" value="resetPassword">
                 <label style="cursor: pointer; color: #e65100; display: block; margin-bottom: 15px;">
                     <input type="checkbox" id="confirmReset" onchange="
@@ -107,9 +107,9 @@
                             btn.style.cursor = 'not-allowed';
                         }
                     ">
-                    {{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_CONFIRM_RESET" }) }}
+                    {{ translate({ ident: "OXSHEARTBEAT_APIUSER_CONFIRM_RESET" }) }}
                 </label>
-                <button type="submit" id="resetBtn" disabled style="display: block; background: #dc3545; color: white; border: none; padding: 8px 16px; font-size: 13px; cursor: not-allowed; opacity: 0.5; border-radius: 4px;">{{ translate({ ident: "OXSLOGGINGFRAMEWORK_APIUSER_RESET_BUTTON" }) }}</button>
+                <button type="submit" id="resetBtn" disabled style="display: block; background: #dc3545; color: white; border: none; padding: 8px 16px; font-size: 13px; cursor: not-allowed; opacity: 0.5; border-radius: 4px;">{{ translate({ ident: "OXSHEARTBEAT_APIUSER_RESET_BUTTON" }) }}</button>
             </form>
         </div>
     </div>

@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\ApiUser\Framework;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\ApiUser\Framework;
 
 use OxidEsales\GraphQL\Base\Framework\PermissionProviderInterface;
-use OxidSupport\LoggingFramework\Component\ApiUser\Framework\PermissionProvider;
+use OxidSupport\Heartbeat\Component\ApiUser\Framework\PermissionProvider;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -37,7 +37,7 @@ final class PermissionProviderTest extends TestCase
         $provider = new PermissionProvider();
         $permissions = $provider->getPermissions();
 
-        $this->assertArrayHasKey('oxsloggingframework_api', $permissions);
+        $this->assertArrayHasKey('oxsheartbeat_api', $permissions);
     }
 
     public function testGetPermissionsContainsAdminGroup(): void
@@ -53,7 +53,7 @@ final class PermissionProviderTest extends TestCase
         $provider = new PermissionProvider();
         $permissions = $provider->getPermissions();
 
-        $this->assertContains('OXSLOGGINGFRAMEWORK_PASSWORD_RESET', $permissions['oxsloggingframework_api']);
+        $this->assertContains('OXSHEARTBEAT_PASSWORD_RESET', $permissions['oxsheartbeat_api']);
     }
 
     public function testAdminGroupHasPasswordResetPermission(): void
@@ -61,7 +61,7 @@ final class PermissionProviderTest extends TestCase
         $provider = new PermissionProvider();
         $permissions = $provider->getPermissions();
 
-        $this->assertContains('OXSLOGGINGFRAMEWORK_PASSWORD_RESET', $permissions['oxidadmin']);
+        $this->assertContains('OXSHEARTBEAT_PASSWORD_RESET', $permissions['oxidadmin']);
     }
 
     public function testApiUserGroupHasExactlyOnePermission(): void
@@ -69,7 +69,7 @@ final class PermissionProviderTest extends TestCase
         $provider = new PermissionProvider();
         $permissions = $provider->getPermissions();
 
-        $this->assertCount(1, $permissions['oxsloggingframework_api']);
+        $this->assertCount(1, $permissions['oxsheartbeat_api']);
     }
 
     public function testAdminGroupHasExactlyOnePermission(): void
@@ -85,7 +85,7 @@ final class PermissionProviderTest extends TestCase
         $provider = new PermissionProvider();
         $permissions = $provider->getPermissions();
 
-        $apiPermissions = $permissions['oxsloggingframework_api'];
+        $apiPermissions = $permissions['oxsheartbeat_api'];
         $adminPermissions = $permissions['oxidadmin'];
 
         sort($apiPermissions);

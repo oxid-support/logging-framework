@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service;
 
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\DataType\SettingType;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\DataType\SettingType;
 
 interface SettingServiceInterface
 {

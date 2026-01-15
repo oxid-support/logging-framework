@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Shared\Controller\Admin;
+namespace OxidSupport\Heartbeat\Shared\Controller\Admin;
 
 // Define the parent class in the same namespace as the controller for testing
 if (!class_exists(NavigationController_parent::class)) {
@@ -23,12 +23,12 @@ if (!class_exists(NavigationController_parent::class)) {
     }
 }
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Shared\Controller\Admin;
+namespace OxidSupport\Heartbeat\Tests\Unit\Shared\Controller\Admin;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserStatusServiceInterface;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\NavigationController;
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserStatusServiceInterface;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\NavigationController;
+use OxidSupport\Heartbeat\Module\Module;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -40,7 +40,7 @@ final class NavigationControllerTest extends TestCase
     private const SETTING_REMOTE_ACTIVE = Module::SETTING_REMOTE_ACTIVE;
 
     #[DataProvider('componentStatusDataProvider')]
-    public function testGetLoggingFrameworkComponentStatusReturnsCorrectValues(
+    public function testGetHeartbeatComponentStatusReturnsCorrectValues(
         bool $apiUserSetupComplete,
         bool $requestLoggerActive,
         bool $remoteActive
@@ -59,19 +59,20 @@ final class NavigationControllerTest extends TestCase
             ->willReturn($apiUserSetupComplete);
 
         $controller = $this->createControllerWithMocks($moduleSettingService, $apiUserStatusService);
-        $status = $controller->getLoggingFrameworkComponentStatus();
+        $status = $controller->getHeartbeatComponentStatus();
 
         $this->assertSame(
             $apiUserSetupComplete,
-            $status['loggingframework_apiuser_setup']
+            $status['heartbeat_apiuser_setup']
         );
         $this->assertSame(
             $requestLoggerActive,
-            $status['loggingframework_requestlogger_settings']
+            $status['heartbeat_requestlogger_settings']
         );
+        // heartbeat_remote_setup requires both apiUserSetupComplete AND remoteActive
         $this->assertSame(
-            $remoteActive,
-            $status['loggingframework_remote_setup']
+            $apiUserSetupComplete && $remoteActive,
+            $status['heartbeat_remote_setup']
         );
     }
 
@@ -115,9 +116,9 @@ final class NavigationControllerTest extends TestCase
         $viewData = $property->getValue($controller);
 
         $this->assertArrayHasKey('lfComponentStatus', $viewData);
-        $this->assertTrue($viewData['lfComponentStatus']['loggingframework_apiuser_setup']);
-        $this->assertTrue($viewData['lfComponentStatus']['loggingframework_requestlogger_settings']);
-        $this->assertFalse($viewData['lfComponentStatus']['loggingframework_remote_setup']);
+        $this->assertTrue($viewData['lfComponentStatus']['heartbeat_apiuser_setup']);
+        $this->assertTrue($viewData['lfComponentStatus']['heartbeat_requestlogger_settings']);
+        $this->assertFalse($viewData['lfComponentStatus']['heartbeat_remote_setup']);
     }
 
     public function testApiUserStatusReturnsFalseOnException(): void
@@ -133,9 +134,9 @@ final class NavigationControllerTest extends TestCase
             ->willThrowException(new \Exception('Service error'));
 
         $controller = $this->createControllerWithMocks($moduleSettingService, $apiUserStatusService);
-        $status = $controller->getLoggingFrameworkComponentStatus();
+        $status = $controller->getHeartbeatComponentStatus();
 
-        $this->assertFalse($status['loggingframework_apiuser_setup']);
+        $this->assertFalse($status['heartbeat_apiuser_setup']);
     }
 
     private function createControllerWithMocks(

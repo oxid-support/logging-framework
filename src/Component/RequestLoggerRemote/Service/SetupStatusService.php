@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 
@@ -17,8 +17,8 @@ use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInt
  */
 final class SetupStatusService implements SetupStatusServiceInterface
 {
-    private const MIGRATION_TABLE = 'oxmigrations_oxsloggingframework';
-    private const EXPECTED_MIGRATION = 'OxidSupport\\LoggingFramework\\Migrations\\Version20251223000001';
+    private const MIGRATION_TABLE = 'oxmigrations_oxsheartbeat';
+    private const EXPECTED_MIGRATION = 'OxidSupport\\Heartbeat\\Migrations\\Version20251223000001';
 
     public function __construct(
         private readonly QueryBuilderFactoryInterface $queryBuilderFactory

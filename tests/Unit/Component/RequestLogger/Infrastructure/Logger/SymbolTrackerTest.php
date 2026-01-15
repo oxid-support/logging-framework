@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger;
 
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\SymbolTracker;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\SymbolTracker;
 use PHPUnit\Framework\TestCase;
 
 class SymbolTrackerTest extends TestCase
@@ -69,12 +69,12 @@ class SymbolTrackerTest extends TestCase
         SymbolTracker::enable();
 
         // Declare a new class dynamically
-        eval('namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger; class DynamicTestClass {}');
+        eval('namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger; class DynamicTestClass {}');
 
         $report = SymbolTracker::report();
 
         $this->assertContains(
-            'OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\DynamicTestClass',
+            'OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\DynamicTestClass',
             $report['symbols']
         );
     }
@@ -84,12 +84,12 @@ class SymbolTrackerTest extends TestCase
         SymbolTracker::enable();
 
         // Simulate a class with _parent suffix
-        eval('namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger; class SomeClass_parent {}');
+        eval('namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger; class SomeClass_parent {}');
 
         $report = SymbolTracker::report();
 
         $this->assertNotContains(
-            'OxidSupport\LoggingFramework\Tests\Unit\Logger\SomeClass_parent',
+            'OxidSupport\Heartbeat\Tests\Unit\Logger\SomeClass_parent',
             $report['symbols']
         );
     }
@@ -111,13 +111,13 @@ class SymbolTrackerTest extends TestCase
         SymbolTracker::enable();
 
         // Evaled class (returns "eval()'d code" as filename)
-        eval('namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger; class EvaledClass {}');
+        eval('namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger; class EvaledClass {}');
 
         $reportNonStrict = SymbolTracker::report(false);
         $reportStrict = SymbolTracker::report(true);
 
         $this->assertContains(
-            'OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\EvaledClass',
+            'OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\EvaledClass',
             $reportNonStrict['symbols'],
             'Non-strict mode should include evaled classes'
         );
@@ -126,7 +126,7 @@ class SymbolTrackerTest extends TestCase
         // which is a string and not empty, so they are NOT filtered out in strict mode
         // This test verifies current behavior
         $this->assertContains(
-            'OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\EvaledClass',
+            'OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\EvaledClass',
             $reportStrict['symbols'],
             'Strict mode currently does not filter evaled classes (they have a filename)'
         );
@@ -136,12 +136,12 @@ class SymbolTrackerTest extends TestCase
     {
         SymbolTracker::enable();
 
-        eval('namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger; interface DynamicTestInterface {}');
+        eval('namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger; interface DynamicTestInterface {}');
 
         $report = SymbolTracker::report();
 
         $this->assertContains(
-            'OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\DynamicTestInterface',
+            'OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\DynamicTestInterface',
             $report['symbols']
         );
     }
@@ -150,12 +150,12 @@ class SymbolTrackerTest extends TestCase
     {
         SymbolTracker::enable();
 
-        eval('namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger; trait DynamicTestTrait {}');
+        eval('namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger; trait DynamicTestTrait {}');
 
         $report = SymbolTracker::report();
 
         $this->assertContains(
-            'OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\DynamicTestTrait',
+            'OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\DynamicTestTrait',
             $report['symbols']
         );
     }

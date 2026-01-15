@@ -1,6 +1,6 @@
-# OXS :: Logging Framework
+# OXS :: Heartbeat
 
-**OXS Logging Framework** is an OXID eShop module that provides **comprehensive logging capabilities**.
+**OXS Heartbeat** is an OXID eShop module that provides **comprehensive logging capabilities**.
 It includes detailed request logging, capturing what users do inside the shop, and a GraphQL API for remote configuration.
 
 The goal: create a **complete trace of what happened in the shop** so developers, support engineers, and analysts can reconstruct a user's actions.
@@ -12,14 +12,15 @@ Logs are **minimally invasive**, stored locally on server, and produce **structu
 
 ### Live
 ```bash
-composer require oxid-support/logging-framework
+composer config repositories.oxid-support/heartbeat vcs https://github.com/oxid-support/lf-request-logging
+composer require oxid-support/heartbeat
 ```
 
 ### Dev
 ```bash
-git clone https://github.com/oxid-support/logging-framework.git repo/oxs/logging-framework
-composer config repositories.oxid-support/logging-framework path repo/oxs/logging-framework
-composer require oxid-support/logging-framework:@dev
+git clone https://github.com/oxid-support/lf-request-logging.git repo/oxs/heartbeat
+composer config repositories.oxid-support/heartbeat path repo/oxs/heartbeat
+composer require oxid-support/heartbeat:@dev
 ```
 
 ### General
@@ -32,25 +33,25 @@ Before activating the module, clear the shop's cache first.
 
 #### Activation
 ```bash
-./vendor/bin/oe-console oe:module:activate oxsloggingframework
+./vendor/bin/oe-console oe:module:activate oxsheartbeat
 ```
 
 ## Module Information
 
-- **Module ID**: `oxsloggingframework`
-- **Module Title**: OXS :: Logging Framework
+- **Module ID**: `oxsheartbeat`
+- **Module Title**: OXS :: Heartbeat
 - **Version**: 1.0.0
 - **Author**: support@oxid-esales.com
 - **Supported OXID Versions**: 7.1+
 - **PHP Version**: 8.0 - 8.4
 
-> **Local Storage Only**: This module writes logs exclusively to server's local filesystem (`OX_BASE_PATH/log/oxs-request-logger/`). No data is transmitted to external services or third parties.
+> **Local Storage Only**: This module writes logs exclusively to server's local filesystem (`OX_BASE_PATH/log/oxs-heartbeat/`). No data is transmitted to external services or third parties.
 
 ---
 
 ## Components
 
-The Logging Framework consists of two components:
+The Heartbeat module consists of several components:
 
 ### 1. Request Logger
 Records controller actions, request parameters, and the classes loaded during the lifecycle of a request to local log files on server.
@@ -113,11 +114,11 @@ Both components can be enabled/disabled independently via the Admin interface.
 
 ## Module Configuration
 
-The module provides configurable settings accessible via OXID Admin → Extensions → Modules → OXS :: Logging Framework.
+The module provides configurable settings accessible via OXID Admin → Extensions → Modules → OXS :: Heartbeat.
 
 ### Request Logger Settings
 
-Navigate to: **OXS :: Logging Framework → Request Logger → Settings**
+Navigate to: **OXS :: Heartbeat → Request Logger → Settings**
 
 #### 1. Component Activation
 - Toggle to enable/disable the Request Logger component
@@ -146,7 +147,7 @@ Navigate to: **OXS :: Logging Framework → Request Logger → Settings**
 
 ### Request Logger Remote Settings
 
-Navigate to: **OXS :: Logging Framework → Request Logger Remote → Setup**
+Navigate to: **OXS :: Heartbeat → Request Logger Remote → Setup**
 
 - **Component Activation**: Toggle to enable/disable the Remote component
 - **Setup Workflow**: Follow the guided setup to configure remote access
@@ -209,7 +210,7 @@ A request usually emits three entries:
 ### File Location
 Logs are written to:
 ```
-OX_BASE_PATH/log/oxs-request-logger/oxs-request-logger-<CorrelationID>.log
+OX_BASE_PATH/log/oxs-heartbeat/oxs-heartbeat-<CorrelationID>.log
 ```
 
 ### File Organization

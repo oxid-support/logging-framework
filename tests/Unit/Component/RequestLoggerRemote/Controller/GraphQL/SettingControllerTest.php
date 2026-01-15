@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Controller\GraphQL;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Controller\GraphQL;
 
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\DataType\SettingType;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\GraphQL\SettingController;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\RemoteComponentStatusServiceInterface;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\SettingServiceInterface;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\DataType\SettingType;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\GraphQL\SettingController;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\RemoteComponentStatusServiceInterface;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\SettingServiceInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -22,8 +22,8 @@ final class SettingControllerTest extends TestCase
     public function testRequestLoggerSettingsReturnsAllSettings(): void
     {
         $expectedSettings = [
-            new SettingType('oxsloggingframework_log-level', 'select'),
-            new SettingType('oxsloggingframework_log-frontend', 'bool'),
+            new SettingType('oxsheartbeat_log-level', 'select'),
+            new SettingType('oxsheartbeat_log-frontend', 'bool'),
         ];
 
         $settingService = $this->createMock(SettingServiceInterface::class);

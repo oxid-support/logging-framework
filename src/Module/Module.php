@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Module;
+namespace OxidSupport\Heartbeat\Module;
 
 final class Module
 {
-    public const ID = 'oxsloggingframework';
+    public const ID = 'oxsheartbeat';
 
     // Request Logger component settings
     public const SETTING_REQUESTLOGGER_ACTIVE = self::ID . '_requestlogger_active';
@@ -33,5 +33,5 @@ final class Module
     public const SETTING_LOGSENDER_MAX_BYTES = self::ID . '_logsender_max_bytes';
     public const SETTING_LOGSENDER_ENABLED_SOURCES = self::ID . '_logsender_enabled_sources';
 
-    public const API_USER_EMAIL = 'loggingframework-api@oxid-esales.com';
+    public const API_USER_EMAIL = 'heartbeat-api@oxid-esales.com';
 }

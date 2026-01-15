@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\LogSender\Exception;
+namespace OxidSupport\Heartbeat\Component\LogSender\Exception;
 
 use Exception;
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Shop\Facade;
+namespace OxidSupport\Heartbeat\Shop\Facade;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Module\Module;
 
 class ModuleSettingFacade implements ModuleSettingFacadeInterface
 {

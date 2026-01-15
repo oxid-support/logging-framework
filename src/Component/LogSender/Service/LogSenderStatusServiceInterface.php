@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\LogSender\Service;
+namespace OxidSupport\Heartbeat\Component\LogSender\Service;
 
-use OxidSupport\LoggingFramework\Component\LogSender\Exception\LogSenderDisabledException;
+use OxidSupport\Heartbeat\Component\LogSender\Exception\LogSenderDisabledException;
 
 /**
  * Service for checking the Log Sender component status.

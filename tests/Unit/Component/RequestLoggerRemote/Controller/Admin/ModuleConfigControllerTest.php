@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Controller\Admin;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Controller\Admin;
 
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\Admin\ModuleConfigController;
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\Admin\ModuleConfigController;
+use OxidSupport\Heartbeat\Module\Module;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\Admin;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\Admin;
 
 use OxidEsales\Eshop\Application\Controller\Admin\ModuleConfiguration;
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Configuration\Dao\ShopConfigurationDaoInterface;
 use OxidEsales\EshopCommunity\Internal\Transition\Utility\ContextInterface;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\SetupStatusServiceInterface;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\SetupStatusServiceInterface;
 
 /**
  * Extended module configuration controller.

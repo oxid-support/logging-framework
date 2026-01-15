@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Shop\Extend\Core;
+namespace OxidSupport\Heartbeat\Tests\Unit\Shop\Extend\Core;
 
-use OxidSupport\LoggingFramework\Shop\Extend\Core\ShopControl;
+use OxidSupport\Heartbeat\Shop\Extend\Core\ShopControl;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionMethod;

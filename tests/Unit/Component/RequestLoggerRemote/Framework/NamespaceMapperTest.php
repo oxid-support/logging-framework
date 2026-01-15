@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Framework;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Framework;
 
 use OxidEsales\GraphQL\Base\Framework\NamespaceMapperInterface;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Framework\NamespaceMapper;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Framework\NamespaceMapper;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -30,7 +30,7 @@ final class NamespaceMapperTest extends TestCase
         $mapping = $mapper->getControllerNamespaceMapping();
 
         $this->assertIsArray($mapping);
-        $this->assertArrayHasKey('OxidSupport\\RequestLogger\\Component\\Remote\\Controller\\GraphQL', $mapping);
+        $this->assertArrayHasKey('OxidSupport\\Heartbeat\\Component\\RequestLoggerRemote\\Controller\\GraphQL', $mapping);
     }
 
     public function testGetControllerNamespaceMappingReturnsValidPath(): void
@@ -38,7 +38,7 @@ final class NamespaceMapperTest extends TestCase
         $mapper = new NamespaceMapper();
         $mapping = $mapper->getControllerNamespaceMapping();
 
-        $path = $mapping['OxidSupport\\RequestLogger\\Component\\Remote\\Controller\\GraphQL'];
+        $path = $mapping['OxidSupport\\Heartbeat\\Component\\RequestLoggerRemote\\Controller\\GraphQL'];
 
         $this->assertIsString($path);
         $this->assertStringEndsWith('/Controller/GraphQL/', $path);
@@ -49,7 +49,7 @@ final class NamespaceMapperTest extends TestCase
         $mapper = new NamespaceMapper();
         $mapping = $mapper->getControllerNamespaceMapping();
 
-        $path = $mapping['OxidSupport\\RequestLogger\\Component\\Remote\\Controller\\GraphQL'];
+        $path = $mapping['OxidSupport\\Heartbeat\\Component\\RequestLoggerRemote\\Controller\\GraphQL'];
 
         // The path contains relative path from NamespaceMapper (__DIR__ . '/../Controller/GraphQL/')
         // Normalize the path by resolving it
@@ -63,7 +63,7 @@ final class NamespaceMapperTest extends TestCase
         $mapping = $mapper->getTypeNamespaceMapping();
 
         $this->assertIsArray($mapping);
-        $this->assertArrayHasKey('OxidSupport\\RequestLogger\\Component\\Remote\\DataType', $mapping);
+        $this->assertArrayHasKey('OxidSupport\\Heartbeat\\Component\\RequestLoggerRemote\\DataType', $mapping);
     }
 
     public function testGetTypeNamespaceMappingReturnsValidPath(): void
@@ -71,7 +71,7 @@ final class NamespaceMapperTest extends TestCase
         $mapper = new NamespaceMapper();
         $mapping = $mapper->getTypeNamespaceMapping();
 
-        $path = $mapping['OxidSupport\\RequestLogger\\Component\\Remote\\DataType'];
+        $path = $mapping['OxidSupport\\Heartbeat\\Component\\RequestLoggerRemote\\DataType'];
 
         $this->assertIsString($path);
         $this->assertStringEndsWith('/DataType/', $path);
@@ -82,7 +82,7 @@ final class NamespaceMapperTest extends TestCase
         $mapper = new NamespaceMapper();
         $mapping = $mapper->getTypeNamespaceMapping();
 
-        $path = $mapping['OxidSupport\\RequestLogger\\Component\\Remote\\DataType'];
+        $path = $mapping['OxidSupport\\Heartbeat\\Component\\RequestLoggerRemote\\DataType'];
 
         // The path contains relative path from NamespaceMapper (__DIR__ . '/../DataType/')
         // Normalize the path by resolving it
@@ -96,7 +96,7 @@ final class NamespaceMapperTest extends TestCase
         $mapping = $mapper->getControllerNamespaceMapping();
 
         // Should only map GraphQL Controller namespace, not Admin subdirectory
-        $this->assertArrayNotHasKey('OxidSupport\\RequestLogger\\Component\\Remote\\Controller\\Admin', $mapping);
+        $this->assertArrayNotHasKey('OxidSupport\\Heartbeat\\Component\\RequestLoggerRemote\\Controller\\Admin', $mapping);
     }
 
     public function testReturnsOnlyOneControllerNamespace(): void

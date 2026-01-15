@@ -7,20 +7,20 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Service;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Service;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Result;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\SetupStatusService;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\SetupStatusService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(SetupStatusService::class)]
 final class SetupStatusServiceTest extends TestCase
 {
-    private const MIGRATION_TABLE = 'oxmigrations_oxsloggingframework';
-    private const EXPECTED_MIGRATION = 'OxidSupport\\LoggingFramework\\Migrations\\Version20251223000001';
+    private const MIGRATION_TABLE = 'oxmigrations_oxsheartbeat';
+    private const EXPECTED_MIGRATION = 'OxidSupport\\Heartbeat\\Migrations\\Version20251223000001';
 
     /**
      * Migration was executed - count returns 1

@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\LogSender\DataType;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\LogSender\DataType;
 
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogPath;
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogPathType;
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogSource;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogPath;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogPathType;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogSource;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

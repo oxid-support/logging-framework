@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Framework;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Framework;
 
 use OxidEsales\GraphQL\Base\Framework\NamespaceMapperInterface;
 
@@ -16,14 +16,14 @@ final class NamespaceMapper implements NamespaceMapperInterface
     public function getControllerNamespaceMapping(): array
     {
         return [
-            'OxidSupport\\LoggingFramework\\Component\\RequestLoggerRemote\\Controller\\GraphQL' => __DIR__ . '/../Controller/GraphQL/',
+            'OxidSupport\\Heartbeat\\Component\\RequestLoggerRemote\\Controller\\GraphQL' => __DIR__ . '/../Controller/GraphQL/',
         ];
     }
 
     public function getTypeNamespaceMapping(): array
     {
         return [
-            'OxidSupport\\LoggingFramework\\Component\\RequestLoggerRemote\\DataType' => __DIR__ . '/../DataType/',
+            'OxidSupport\\Heartbeat\\Component\\RequestLoggerRemote\\DataType' => __DIR__ . '/../DataType/',
         ];
     }
 }

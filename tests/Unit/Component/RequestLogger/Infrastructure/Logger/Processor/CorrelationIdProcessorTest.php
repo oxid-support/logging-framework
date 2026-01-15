@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\Processor;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\Processor;
 
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProviderInterface;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessor;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessorInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProviderInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessor;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessorInterface;
 use PHPUnit\Framework\TestCase;
 
 class CorrelationIdProcessorTest extends TestCase

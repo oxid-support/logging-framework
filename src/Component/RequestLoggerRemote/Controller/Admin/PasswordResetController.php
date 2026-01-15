@@ -7,15 +7,15 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\Admin;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\Admin;
 
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Component\ApiUser\Exception\UserNotFoundException;
-use OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserServiceInterface;
-use OxidSupport\LoggingFramework\Component\ApiUser\Service\TokenGeneratorInterface;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Component\ApiUser\Exception\UserNotFoundException;
+use OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserServiceInterface;
+use OxidSupport\Heartbeat\Component\ApiUser\Service\TokenGeneratorInterface;
 
 /**
  * Admin controller for password reset functionality.

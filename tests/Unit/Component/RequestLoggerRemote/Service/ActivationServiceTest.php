@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Service;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Service;
 
 use OxidEsales\GraphQL\ConfigurationAccess\Module\DataType\BooleanSetting;
 use OxidEsales\GraphQL\ConfigurationAccess\Module\Service\ModuleSettingServiceInterface as ConfigAccessSettingService;
-use OxidSupport\LoggingFramework\Module\Module as RequestLoggerModule;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service\ActivationService;
+use OxidSupport\Heartbeat\Module\Module as RequestLoggerModule;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service\ActivationService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -20,6 +20,13 @@ use PHPUnit\Framework\TestCase;
 final class ActivationServiceTest extends TestCase
 {
     private const SETTING_ACTIVE = RequestLoggerModule::SETTING_REQUESTLOGGER_ACTIVE;
+
+    protected function setUp(): void
+    {
+        if (!class_exists(BooleanSetting::class)) {
+            $this->markTestSkipped('BooleanSetting class from GraphQL Configuration Access not available');
+        }
+    }
 
     public function testActivateReturnsTrue(): void
     {
@@ -90,7 +97,7 @@ final class ActivationServiceTest extends TestCase
 
     public function testActivateUsesCorrectSettingName(): void
     {
-        $this->assertSame('oxsloggingframework_requestlogger_active', self::SETTING_ACTIVE);
+        $this->assertSame('oxsheartbeat_requestlogger_active', self::SETTING_ACTIVE);
     }
 
     private function getSut(

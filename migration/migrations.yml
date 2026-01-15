@@ -1,4 +1,4 @@
 table_storage:
-  table_name: oxmigrations_oxsloggingframework
+  table_name: oxmigrations_oxsheartbeat
 migrations_paths:
-  'OxidSupport\LoggingFramework\Migrations': data
+  'OxidSupport\Heartbeat\Migrations': data

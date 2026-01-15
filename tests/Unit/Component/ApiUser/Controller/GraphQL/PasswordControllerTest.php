@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\ApiUser\Controller\GraphQL;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\ApiUser\Controller\GraphQL;
 
-use OxidSupport\LoggingFramework\Component\ApiUser\Controller\GraphQL\PasswordController;
+use OxidSupport\Heartbeat\Component\ApiUser\Controller\GraphQL\PasswordController;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
@@ -19,82 +19,82 @@ final class PasswordControllerTest extends TestCase
 {
     public function testSetPasswordMethodHasMutationAttribute(): void
     {
-        $reflection = new ReflectionMethod(PasswordController::class, 'loggingFrameworkSetPassword');
+        $reflection = new ReflectionMethod(PasswordController::class, 'heartbeatSetPassword');
         $attributes = $this->getAttributeNames($reflection);
 
         $this->assertContains(
             'TheCodingMachine\GraphQLite\Annotations\Mutation',
             $attributes,
-            "loggingFrameworkSetPassword must have #[Mutation] attribute"
+            "heartbeatSetPassword must have #[Mutation] attribute"
         );
     }
 
     public function testSetPasswordUsesTokenAuthNotSessionAuth(): void
     {
-        $reflection = new ReflectionMethod(PasswordController::class, 'loggingFrameworkSetPassword');
+        $reflection = new ReflectionMethod(PasswordController::class, 'heartbeatSetPassword');
         $attributes = $this->getAttributeNames($reflection);
 
         // Should NOT have #[Logged] - uses token-based auth instead
         $this->assertNotContains(
             'TheCodingMachine\GraphQLite\Annotations\Logged',
             $attributes,
-            "loggingFrameworkSetPassword must NOT have #[Logged] - uses token auth"
+            "heartbeatSetPassword must NOT have #[Logged] - uses token auth"
         );
     }
 
     public function testResetPasswordMethodHasMutationAttribute(): void
     {
-        $reflection = new ReflectionMethod(PasswordController::class, 'loggingFrameworkResetPassword');
+        $reflection = new ReflectionMethod(PasswordController::class, 'heartbeatResetPassword');
         $attributes = $this->getAttributeNames($reflection);
 
         $this->assertContains(
             'TheCodingMachine\GraphQLite\Annotations\Mutation',
             $attributes,
-            "loggingFrameworkResetPassword must have #[Mutation] attribute"
+            "heartbeatResetPassword must have #[Mutation] attribute"
         );
     }
 
     public function testResetPasswordRequiresAuthentication(): void
     {
-        $reflection = new ReflectionMethod(PasswordController::class, 'loggingFrameworkResetPassword');
+        $reflection = new ReflectionMethod(PasswordController::class, 'heartbeatResetPassword');
         $attributes = $this->getAttributeNames($reflection);
 
         $this->assertContains(
             'TheCodingMachine\GraphQLite\Annotations\Logged',
             $attributes,
-            "loggingFrameworkResetPassword must have #[Logged] attribute"
+            "heartbeatResetPassword must have #[Logged] attribute"
         );
     }
 
     public function testResetPasswordRequiresSpecificRight(): void
     {
-        $reflection = new ReflectionMethod(PasswordController::class, 'loggingFrameworkResetPassword');
+        $reflection = new ReflectionMethod(PasswordController::class, 'heartbeatResetPassword');
         $attributes = $this->getAttributeNames($reflection);
 
         $this->assertContains(
             'TheCodingMachine\GraphQLite\Annotations\Right',
             $attributes,
-            "loggingFrameworkResetPassword must have #[Right] attribute"
+            "heartbeatResetPassword must have #[Right] attribute"
         );
     }
 
     public function testSetPasswordMethodIsPublic(): void
     {
-        $reflection = new ReflectionMethod(PasswordController::class, 'loggingFrameworkSetPassword');
+        $reflection = new ReflectionMethod(PasswordController::class, 'heartbeatSetPassword');
 
         $this->assertTrue($reflection->isPublic());
     }
 
     public function testResetPasswordMethodIsPublic(): void
     {
-        $reflection = new ReflectionMethod(PasswordController::class, 'loggingFrameworkResetPassword');
+        $reflection = new ReflectionMethod(PasswordController::class, 'heartbeatResetPassword');
 
         $this->assertTrue($reflection->isPublic());
     }
 
     public function testSetPasswordHasTokenParameter(): void
     {
-        $reflection = new ReflectionMethod(PasswordController::class, 'loggingFrameworkSetPassword');
+        $reflection = new ReflectionMethod(PasswordController::class, 'heartbeatSetPassword');
         $parameters = $reflection->getParameters();
 
         $parameterNames = array_map(fn($p) => $p->getName(), $parameters);
@@ -104,7 +104,7 @@ final class PasswordControllerTest extends TestCase
 
     public function testSetPasswordHasPasswordParameter(): void
     {
-        $reflection = new ReflectionMethod(PasswordController::class, 'loggingFrameworkSetPassword');
+        $reflection = new ReflectionMethod(PasswordController::class, 'heartbeatSetPassword');
         $parameters = $reflection->getParameters();
 
         $parameterNames = array_map(fn($p) => $p->getName(), $parameters);
@@ -114,7 +114,7 @@ final class PasswordControllerTest extends TestCase
 
     public function testSetPasswordReturnsBool(): void
     {
-        $reflection = new ReflectionMethod(PasswordController::class, 'loggingFrameworkSetPassword');
+        $reflection = new ReflectionMethod(PasswordController::class, 'heartbeatSetPassword');
         $returnType = $reflection->getReturnType();
 
         $this->assertNotNull($returnType);
@@ -123,7 +123,7 @@ final class PasswordControllerTest extends TestCase
 
     public function testResetPasswordReturnsString(): void
     {
-        $reflection = new ReflectionMethod(PasswordController::class, 'loggingFrameworkResetPassword');
+        $reflection = new ReflectionMethod(PasswordController::class, 'heartbeatResetPassword');
         $returnType = $reflection->getReturnType();
 
         $this->assertNotNull($returnType);

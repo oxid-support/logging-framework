@@ -7,21 +7,21 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\Admin;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\Admin;
 
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserStatusServiceInterface;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\AbstractComponentController;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\TogglableComponentInterface;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserStatusServiceInterface;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\AbstractComponentController;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\TogglableComponentInterface;
 
 /**
- * Request Logger Remote setup controller for the Logging Framework.
+ * Request Logger Remote setup controller for the Heartbeat.
  * Displays the component activation and requires API User to be set up first.
  */
 class SetupController extends AbstractComponentController implements TogglableComponentInterface
 {
-    protected $_sThisTemplate = '@oxsloggingframework/admin/loggingframework_remote_setup';
+    protected $_sThisTemplate = '@oxsheartbeat/admin/heartbeat_remote_setup';
 
     private const CONFIG_ACCESS_MODULE_ID = 'oe_graphql_configuration_access';
 
@@ -52,7 +52,7 @@ class SetupController extends AbstractComponentController implements TogglableCo
     public function getStatusTextKey(): string
     {
         if (!$this->isApiUserSetupComplete()) {
-            return 'OXSLOGGINGFRAMEWORK_REMOTE_STATUS_WARNING';
+            return 'OXSHEARTBEAT_REMOTE_STATUS_WARNING';
         }
         return parent::getStatusTextKey();
     }

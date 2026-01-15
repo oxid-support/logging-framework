@@ -7,15 +7,15 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Shared\Controller\Admin;
+namespace OxidSupport\Heartbeat\Shared\Controller\Admin;
 
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserStatusServiceInterface;
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserStatusServiceInterface;
+use OxidSupport\Heartbeat\Module\Module;
 
 /**
- * Extended NavigationController to add Logging Framework component status indicators.
+ * Extended NavigationController to add Heartbeat component status indicators.
  *
  * @eshopExtension
  * @mixin \OxidEsales\Eshop\Application\Controller\Admin\NavigationController
@@ -34,31 +34,31 @@ class NavigationController extends NavigationController_parent
         $template = parent::render();
 
         // Add component status information for the template
-        $this->_aViewData['lfComponentStatus'] = $this->getLoggingFrameworkComponentStatus();
+        $this->_aViewData['lfComponentStatus'] = $this->getHeartbeatComponentStatus();
 
         return $template;
     }
 
     /**
-     * Get the activation status of all Logging Framework components.
+     * Get the activation status of all Heartbeat components.
      *
      * @return array<string, bool>
      */
-    public function getLoggingFrameworkComponentStatus(): array
+    public function getHeartbeatComponentStatus(): array
     {
         $moduleSettingService = $this->getModuleSettingService();
 
         return [
-            'loggingframework_apiuser_setup' => $this->isApiUserSetupComplete(),
-            'loggingframework_requestlogger_settings' => $moduleSettingService->getBoolean(
+            'heartbeat_apiuser_setup' => $this->isApiUserSetupComplete(),
+            'heartbeat_requestlogger_settings' => $moduleSettingService->getBoolean(
                 self::SETTING_REQUESTLOGGER_ACTIVE,
                 Module::ID
             ),
-            'loggingframework_remote_setup' => $this->isApiUserSetupComplete() && $moduleSettingService->getBoolean(
+            'heartbeat_remote_setup' => $this->isApiUserSetupComplete() && $moduleSettingService->getBoolean(
                 self::SETTING_REMOTE_ACTIVE,
                 Module::ID
             ),
-            'loggingframework_logsender_setup' => $this->isApiUserSetupComplete() && $this->getLogSenderStatus($moduleSettingService),
+            'heartbeat_logsender_setup' => $this->isApiUserSetupComplete() && $this->getLogSenderStatus($moduleSettingService),
         ];
     }
 

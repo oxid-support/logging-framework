@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\ApiUser\Exception;
+namespace OxidSupport\Heartbeat\Component\ApiUser\Exception;
 
 use OxidEsales\GraphQL\Base\Exception\Error;
 

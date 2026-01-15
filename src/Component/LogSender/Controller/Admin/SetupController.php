@@ -7,23 +7,23 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\LogSender\Controller\Admin;
+namespace OxidSupport\Heartbeat\Component\LogSender\Controller\Admin;
 
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
-use OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserStatusServiceInterface;
-use OxidSupport\LoggingFramework\Component\LogSender\Service\LogCollectorServiceInterface;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\AbstractComponentController;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\TogglableComponentInterface;
+use OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserStatusServiceInterface;
+use OxidSupport\Heartbeat\Component\LogSender\Service\LogCollectorServiceInterface;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\AbstractComponentController;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\TogglableComponentInterface;
 
 /**
- * Log Sender setup controller for the Logging Framework.
+ * Log Sender setup controller for the Heartbeat.
  * Displays recognized log sources and allows activation/deactivation.
  */
 class SetupController extends AbstractComponentController implements TogglableComponentInterface
 {
-    protected $_sThisTemplate = '@oxsloggingframework/admin/loggingframework_logsender_setup';
+    protected $_sThisTemplate = '@oxsheartbeat/admin/heartbeat_logsender_setup';
 
     private ?ApiUserStatusServiceInterface $apiUserStatusService = null;
     private ?LogCollectorServiceInterface $logCollectorService = null;
@@ -57,7 +57,7 @@ class SetupController extends AbstractComponentController implements TogglableCo
     public function getStatusTextKey(): string
     {
         if (!$this->isApiUserSetupComplete()) {
-            return 'OXSLOGGINGFRAMEWORK_LOGSENDER_STATUS_WARNING';
+            return 'OXSHEARTBEAT_LOGSENDER_STATUS_WARNING';
         }
         return parent::getStatusTextKey();
     }

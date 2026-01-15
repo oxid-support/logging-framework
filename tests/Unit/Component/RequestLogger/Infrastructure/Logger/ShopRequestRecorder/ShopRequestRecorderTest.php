@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder;
 
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder\ShopRequestRecorder;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder\ShopRequestRecorderInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder\ShopRequestRecorder;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\ShopRequestRecorder\ShopRequestRecorderInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 

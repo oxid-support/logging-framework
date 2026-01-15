@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Exception;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Exception;
 
 use OxidEsales\GraphQL\Base\Exception\Error;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Exception\RemoteComponentDisabledException;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Exception\RemoteComponentDisabledException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\LogSender\Controller\GraphQL;
+namespace OxidSupport\Heartbeat\Component\LogSender\Controller\GraphQL;
 
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogContentType;
-use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogSourceType;
-use OxidSupport\LoggingFramework\Component\LogSender\Service\LogCollectorServiceInterface;
-use OxidSupport\LoggingFramework\Component\LogSender\Service\LogReaderServiceInterface;
-use OxidSupport\LoggingFramework\Component\LogSender\Service\LogSenderStatusServiceInterface;
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogContentType;
+use OxidSupport\Heartbeat\Component\LogSender\DataType\LogSourceType;
+use OxidSupport\Heartbeat\Component\LogSender\Service\LogCollectorServiceInterface;
+use OxidSupport\Heartbeat\Component\LogSender\Service\LogReaderServiceInterface;
+use OxidSupport\Heartbeat\Component\LogSender\Service\LogSenderStatusServiceInterface;
+use OxidSupport\Heartbeat\Module\Module;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 use TheCodingMachine\GraphQLite\Annotations\Logged;
 use TheCodingMachine\GraphQLite\Annotations\Query;

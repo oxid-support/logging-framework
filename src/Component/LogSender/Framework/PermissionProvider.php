@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\LogSender\Framework;
+namespace OxidSupport\Heartbeat\Component\LogSender\Framework;
 
 use OxidEsales\GraphQL\Base\Framework\PermissionProviderInterface;
 
@@ -17,7 +17,7 @@ final class PermissionProvider implements PermissionProviderInterface
     {
         return [
             // Custom user group for Log Sender API access
-            'oxsloggingframework_api' => [
+            'oxsheartbeat_api' => [
                 'LOG_SENDER_VIEW',
             ],
             // Also grant permissions to shop admins

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Processor;
+namespace OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Processor;
 
 interface CorrelationIdProcessorInterface
 {

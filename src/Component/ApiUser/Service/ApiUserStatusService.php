@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\ApiUser\Service;
+namespace OxidSupport\Heartbeat\Component\ApiUser\Service;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Module\Module;
 
 /**
  * Service to check the setup status of the API user.
@@ -18,8 +18,8 @@ use OxidSupport\LoggingFramework\Module\Module;
  */
 final class ApiUserStatusService implements ApiUserStatusServiceInterface
 {
-    private const MIGRATION_TABLE = 'oxmigrations_oxsloggingframework';
-    private const EXPECTED_MIGRATION = 'OxidSupport\\LoggingFramework\\Migrations\\Version20251223000001';
+    private const MIGRATION_TABLE = 'oxmigrations_oxsheartbeat';
+    private const EXPECTED_MIGRATION = 'OxidSupport\\Heartbeat\\Migrations\\Version20251223000001';
 
     public function __construct(
         private readonly QueryBuilderFactoryInterface $queryBuilderFactory

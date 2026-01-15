@@ -7,18 +7,18 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Controller\Admin;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Controller\Admin;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Configuration\Dao\ShopConfigurationDaoInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Configuration\DataObject\ModuleConfiguration;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Configuration\DataObject\ShopConfiguration;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 use OxidEsales\EshopCommunity\Internal\Transition\Utility\ContextInterface;
-use OxidSupport\LoggingFramework\Component\ApiUser\Service\ApiUserStatusServiceInterface;
-use OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Controller\Admin\SetupController;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\ComponentControllerInterface;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\TogglableComponentInterface;
+use OxidSupport\Heartbeat\Component\ApiUser\Service\ApiUserStatusServiceInterface;
+use OxidSupport\Heartbeat\Component\RequestLoggerRemote\Controller\Admin\SetupController;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\ComponentControllerInterface;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\TogglableComponentInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -34,7 +34,7 @@ final class SetupControllerTest extends TestCase
         $property = $reflection->getProperty('_sThisTemplate');
 
         $this->assertSame(
-            '@oxsloggingframework/admin/loggingframework_remote_setup',
+            '@oxsheartbeat/admin/heartbeat_remote_setup',
             $property->getDefaultValue()
         );
     }
@@ -321,7 +321,7 @@ final class SetupControllerTest extends TestCase
 
         $controller = $this->createControllerWithMocks(apiUserStatusService: $apiUserStatusService);
 
-        $this->assertSame('OXSLOGGINGFRAMEWORK_REMOTE_STATUS_WARNING', $controller->getStatusTextKey());
+        $this->assertSame('OXSHEARTBEAT_REMOTE_STATUS_WARNING', $controller->getStatusTextKey());
     }
 
     public function testGetStatusTextKeyReturnsActiveKeyWhenApiUserSetUpAndActive(): void
@@ -342,7 +342,7 @@ final class SetupControllerTest extends TestCase
             apiUserStatusService: $apiUserStatusService
         );
 
-        $this->assertSame('OXSREQUESTLOGGER_LF_STATUS_ACTIVE', $controller->getStatusTextKey());
+        $this->assertSame('OXSHEARTBEAT_LF_STATUS_ACTIVE', $controller->getStatusTextKey());
     }
 
     public function testImplementsTogglableComponentInterface(): void

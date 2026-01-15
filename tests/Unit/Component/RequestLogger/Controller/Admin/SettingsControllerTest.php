@@ -7,17 +7,16 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Controller\Admin;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Controller\Admin;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Controller\Admin\SettingsController;
-use OxidSupport\LoggingFramework\Module\Module;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\ComponentControllerInterface;
-use OxidSupport\LoggingFramework\Shared\Controller\Admin\TogglableComponentInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Controller\Admin\SettingsController;
+use OxidSupport\Heartbeat\Module\Module;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\ComponentControllerInterface;
+use OxidSupport\Heartbeat\Shared\Controller\Admin\TogglableComponentInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\String\UnicodeString;
 
 #[CoversClass(SettingsController::class)]
 final class SettingsControllerTest extends TestCase
@@ -30,7 +29,7 @@ final class SettingsControllerTest extends TestCase
         $property = $reflection->getProperty('_sThisTemplate');
 
         $this->assertSame(
-            '@oxsloggingframework/admin/loggingframework_requestlogger_settings',
+            '@oxsheartbeat/admin/heartbeat_requestlogger_settings',
             $property->getDefaultValue()
         );
     }
@@ -110,7 +109,7 @@ final class SettingsControllerTest extends TestCase
         $moduleSettingService
             ->method('getString')
             ->with(Module::SETTING_REQUESTLOGGER_LOG_LEVEL, Module::ID)
-            ->willReturn(new UnicodeString('detailed'));
+            ->willReturn('detailed');
 
         $moduleSettingService
             ->method('getCollection')
@@ -189,8 +188,8 @@ final class SettingsControllerTest extends TestCase
     public static function statusTextKeyDataProvider(): array
     {
         return [
-            'active returns active key' => [true, 'OXSREQUESTLOGGER_LF_STATUS_ACTIVE'],
-            'inactive returns inactive key' => [false, 'OXSREQUESTLOGGER_LF_STATUS_INACTIVE'],
+            'active returns active key' => [true, 'OXSHEARTBEAT_LF_STATUS_ACTIVE'],
+            'inactive returns inactive key' => [false, 'OXSHEARTBEAT_LF_STATUS_INACTIVE'],
         ];
     }
 

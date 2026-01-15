@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLoggerRemote\Core;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLoggerRemote\Core;
 
-use OxidSupport\LoggingFramework\Module\Module;
+use OxidSupport\Heartbeat\Module\Module;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -18,7 +18,7 @@ final class ModuleTest extends TestCase
 {
     public function testModuleIdConstantIsCorrect(): void
     {
-        $this->assertEquals('oxsloggingframework', Module::ID);
+        $this->assertEquals('oxsheartbeat', Module::ID);
     }
 
     public function testModuleIdConstantIsString(): void
@@ -33,7 +33,7 @@ final class ModuleTest extends TestCase
 
     public function testSettingApiUserSetupTokenConstantIsCorrect(): void
     {
-        $this->assertEquals('oxsloggingframework_apiuser_setup_token', Module::SETTING_APIUSER_SETUP_TOKEN);
+        $this->assertEquals('oxsheartbeat_apiuser_setup_token', Module::SETTING_APIUSER_SETUP_TOKEN);
     }
 
     public function testSettingApiUserSetupTokenConstantIsString(): void
@@ -53,7 +53,7 @@ final class ModuleTest extends TestCase
 
     public function testApiUserEmailConstantIsCorrect(): void
     {
-        $this->assertEquals('loggingframework-api@oxid-esales.com', Module::API_USER_EMAIL);
+        $this->assertEquals('heartbeat-api@oxid-esales.com', Module::API_USER_EMAIL);
     }
 
     public function testApiUserEmailConstantIsString(): void
@@ -96,8 +96,8 @@ final class ModuleTest extends TestCase
         $reflection = new \ReflectionClass(Module::class);
         $constants = $reflection->getConstants();
 
-        // Module has ID + 6 request logger settings + 1 API user setting + 1 remote setting + API_USER_EMAIL = 10 constants
-        $this->assertCount(10, $constants);
+        // Module has ID + 6 request logger settings + 1 API user setting + 1 remote setting + 4 log sender settings + API_USER_EMAIL = 14 constants
+        $this->assertCount(14, $constants);
     }
 
     public function testAllConstantsArePublic(): void

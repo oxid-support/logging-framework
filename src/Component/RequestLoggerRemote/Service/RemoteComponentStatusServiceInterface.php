@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Service;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Service;
 
 interface RemoteComponentStatusServiceInterface
 {
@@ -19,7 +19,7 @@ interface RemoteComponentStatusServiceInterface
     /**
      * Throws an exception if the remote component is disabled.
      *
-     * @throws \OxidSupport\LoggingFramework\Remote\Exception\RemoteComponentDisabledException
+     * @throws \OxidSupport\Heartbeat\Remote\Exception\RemoteComponentDisabledException
      */
     public function assertComponentActive(): void;
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger;
 
 /**
  * NAMESPACE FUNCTION OVERRIDE TECHNIQUE FOR error_log()
@@ -13,9 +13,9 @@ namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infras
  *
  * HOW IT WORKS:
  * -------------
- * The production code (LoggerFactory) is in namespace OxidSupport\LoggingFramework\Logger.
+ * The production code (LoggerFactory) is in namespace OxidSupport\Heartbeat\Logger.
  * When LoggerFactory calls error_log(), PHP searches:
- * 1. Current namespace first (OxidSupport\LoggingFramework\Logger)
+ * 1. Current namespace first (OxidSupport\Heartbeat\Logger)
  * 2. Global namespace if not found
  *
  * By defining error_log() in the production code's namespace, we intercept the call
@@ -30,7 +30,7 @@ namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infras
  */
 
 // Override error_log() for the LoggerFactory namespace
-namespace OxidSupport\LoggingFramework\Logger;
+namespace OxidSupport\Heartbeat\Logger;
 
 /**
  * Override for global error_log() function.
@@ -53,15 +53,15 @@ function error_log(
 }
 
 // Back to test namespace
-namespace OxidSupport\LoggingFramework\Tests\Unit\Component\RequestLogger\Infrastructure\Logger;
+namespace OxidSupport\Heartbeat\Tests\Unit\Component\RequestLogger\Infrastructure\Logger;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProviderInterface;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\LoggerFactory;
-use OxidSupport\LoggingFramework\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessorInterface;
-use OxidSupport\LoggingFramework\Shop\Facade\ModuleSettingFacadeInterface;
-use OxidSupport\LoggingFramework\Shop\Facade\ShopFacadeInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\CorrelationId\CorrelationIdProviderInterface;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\LoggerFactory;
+use OxidSupport\Heartbeat\Component\RequestLogger\Infrastructure\Logger\Processor\CorrelationIdProcessorInterface;
+use OxidSupport\Heartbeat\Shop\Facade\ModuleSettingFacadeInterface;
+use OxidSupport\Heartbeat\Shop\Facade\ShopFacadeInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 
@@ -147,7 +147,7 @@ class LoggerFactoryTest extends TestCase
         $logger = $this->factory->create();
 
         // Check if log file was created with correlation ID in name
-        $expectedFile = $this->testLogDir . 'oxs-request-logger/' . 'oxs-request-logger-' . $correlationId . '.log';
+        $expectedFile = $this->testLogDir . 'oxs-heartbeat/' . 'oxs-heartbeat-' . $correlationId . '.log';
 
         $this->assertInstanceOf(LoggerInterface::class, $logger);
     }
@@ -170,7 +170,7 @@ class LoggerFactoryTest extends TestCase
             ->willReturn('debug');
 
         // Verify subdirectory doesn't exist yet
-        $this->assertFalse($this->vfsRoot->hasChild('oxs-request-logger'));
+        $this->assertFalse($this->vfsRoot->hasChild('oxs-heartbeat'));
 
         $logger = $this->factory->create();
 
@@ -183,7 +183,7 @@ class LoggerFactoryTest extends TestCase
     public function testCreateHandlesExistingLogDirectory(): void
     {
         // Pre-create directory
-        mkdir($this->testLogDir . 'oxs-request-logger/', 0775, true);
+        mkdir($this->testLogDir . 'oxs-heartbeat/', 0775, true);
 
         $this->provider
             ->expects($this->once())

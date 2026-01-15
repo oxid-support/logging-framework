@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSupport\LoggingFramework\Component\RequestLoggerRemote\Framework;
+namespace OxidSupport\Heartbeat\Component\RequestLoggerRemote\Framework;
 
 use OxidEsales\GraphQL\Base\Framework\PermissionProviderInterface;
 
@@ -17,7 +17,7 @@ final class PermissionProvider implements PermissionProviderInterface
     {
         return [
             // Custom user group for Request Logger Remote API access
-            'oxsloggingframework_api' => [
+            'oxsheartbeat_api' => [
                 'REQUEST_LOGGER_VIEW',
                 'REQUEST_LOGGER_CHANGE',
                 'REQUEST_LOGGER_ACTIVATE',
