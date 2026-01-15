@@ -9,8 +9,8 @@
             <SUBMENU id="mxloggingframework_requestlogger" cl="loggingframework_requestlogger_settings" />
             <!-- Request Logger Remote Component - Setup directly -->
             <SUBMENU id="mxloggingframework_remote" cl="loggingframework_remote_setup" />
-            <!-- Log Sender Component - Setup -->
-            <SUBMENU id="mxloggingframework_logsender" cl="loggingframework_logsender_setup" />
+            <!-- Log Sender Component - Manage -->
+            <SUBMENU id="mxloggingframework_logsender" cl="loggingframework_logsender_manage" />
         </MAINMENU>
     </OXMENU>
 </OX>

@@ -196,11 +196,11 @@ services:
             - { name: 'oxs.logsender.provider' }
 
     # Component: LogSender - Controller/Admin
-    OxidSupport\LoggingFramework\Component\LogSender\Controller\Admin\SetupController:
+    OxidSupport\LoggingFramework\Component\LogSender\Controller\Admin\ManageController:
         public: true
         autowire: false
         tags:
-            - { name: 'oxid.view_controller', controller_key: 'loggingframework_logsender_setup' }
+            - { name: 'oxid.view_controller', controller_key: 'loggingframework_logsender_manage' }
 
     # Component: LogSender - Controller/GraphQL
     OxidSupport\LoggingFramework\Component\LogSender\Controller\GraphQL\LogController:

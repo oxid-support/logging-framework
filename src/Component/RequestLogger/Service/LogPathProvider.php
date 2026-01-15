@@ -12,7 +12,6 @@ namespace OxidSupport\LoggingFramework\Component\RequestLogger\Service;
 use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogPath;
 use OxidSupport\LoggingFramework\Component\LogSender\DataType\LogPathType;
 use OxidSupport\LoggingFramework\Component\LogSender\Service\LogPathProviderInterface;
-use OxidSupport\LoggingFramework\Module\Module;
 use OxidSupport\LoggingFramework\Shop\Facade\ModuleSettingFacadeInterface;
 use OxidSupport\LoggingFramework\Shop\Facade\ShopFacadeInterface;
 
@@ -29,9 +28,11 @@ class LogPathProvider implements LogPathProviderInterface
     ) {
     }
 
+    private const LOG_DIRECTORY_NAME = 'oxs-request-logger';
+
     public function getLogPaths(): array
     {
-        $logDirectory = $this->shopFacade->getLogsPath() . Module::ID . DIRECTORY_SEPARATOR;
+        $logDirectory = $this->shopFacade->getLogsPath() . self::LOG_DIRECTORY_NAME . DIRECTORY_SEPARATOR;
 
         return [
             new LogPath(

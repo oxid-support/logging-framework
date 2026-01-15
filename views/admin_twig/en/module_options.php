@@ -24,7 +24,7 @@ $aLang = [
     'mxloggingframework_remote' => 'Request Logger Remote',
     'tbclloggingframework_remote_setup' => 'Setup',
     'mxloggingframework_logsender' => 'Log Sender',
-    'tbclloggingframework_logsender_setup' => 'Setup',
+    'tbclloggingframework_logsender_manage' => 'Manage',
 
     // Logging Framework Component Status
     'OXSREQUESTLOGGER_LF_STATUS_ACTIVE' => 'Active',
@@ -148,4 +148,8 @@ $aLang = [
     'OXSLOGGINGFRAMEWORK_LOGSENDER_FILES_FOUND' => 'files found',
     'OXSLOGGINGFRAMEWORK_LOGSENDER_SIZE' => 'Size',
     'OXSLOGGINGFRAMEWORK_LOGSENDER_TOGGLE_SOURCE' => 'Enable/disable log source for sending',
+    'OXSLOGGINGFRAMEWORK_LOGSENDER_REFRESH' => 'Refresh',
+    'OXSLOGGINGFRAMEWORK_LOGSENDER_REFRESH_TITLE' => 'Reload log sources (clear cache)',
+    'OXSLOGGINGFRAMEWORK_LOGSENDER_HOWTO_REFRESH' => 'Refresh Button',
+    'OXSLOGGINGFRAMEWORK_LOGSENDER_HOWTO_REFRESH_DESC' => 'Reloads the list of log sources by clearing the DI container cache. Use this if new providers are not showing up.',
 ];

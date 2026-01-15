@@ -18,12 +18,12 @@ use OxidSupport\LoggingFramework\Shared\Controller\Admin\AbstractComponentContro
 use OxidSupport\LoggingFramework\Shared\Controller\Admin\TogglableComponentInterface;
 
 /**
- * Log Sender setup controller for the Logging Framework.
+ * Log Sender management controller for the Logging Framework.
  * Displays recognized log sources and allows activation/deactivation.
  */
-class SetupController extends AbstractComponentController implements TogglableComponentInterface
+class ManageController extends AbstractComponentController implements TogglableComponentInterface
 {
-    protected $_sThisTemplate = '@oxsloggingframework/admin/loggingframework_logsender_setup';
+    protected $_sThisTemplate = '@oxsloggingframework/admin/loggingframework_logsender_manage';
 
     private ?ApiUserStatusServiceInterface $apiUserStatusService = null;
     private ?LogCollectorServiceInterface $logCollectorService = null;
@@ -233,6 +233,15 @@ class SetupController extends AbstractComponentController implements TogglableCo
         } catch (\Throwable) {
             return '';
         }
+    }
+
+    /**
+     * Refresh log sources by invalidating the DI container cache.
+     * This forces rediscovery of tagged providers on next request.
+     */
+    public function refreshSources(): void
+    {
+        ContainerFactory::resetContainer();
     }
 
     /**
